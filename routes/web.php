@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +11,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'RootController@index')->name('root');
+
+//Route::get('/', function () {
+//	if(Auth::check()){
+//		return redirect(route('home'));
+//	}else{
+//		return view('auth/login');
+//	}
+//});
+
+Route::resource('/messages','MessageController');
+Route::resource('/albums', 'AlbumController');
+Route::resource('/photos', 'PhotoController')->only(['store','destroy','show']);
+Route::resource('/games', 'GameController');
+
+Route::get('/game1', 'GameController@game1')->name('game');
+//Route::get('/gameTest', 'GameController@gameTest')->name('Test');
+//Route::get('/gameRpg', 'GameController@gameRPG')->name('RPG');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

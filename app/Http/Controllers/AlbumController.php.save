@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Album;
+use App\User;
+use App\Photo;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use Redirect;
+
+class AlbumController extends Controller
+{
+    
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    $albums = Album::with('user','photos')->simplePaginate(8);
+        return view('albums.index', compact('albums'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('albums.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        
+        $album = Album::create([
+                'title'=> $request->title,
+                'content'=>$request->content,
+                'user_id'=> Auth::user()->id,
+            ]);
+        if($request->hasFile('photos')){ 
+            $allowedfileExtension=['pdf','jpg','png','docx','jpeg'];
+            $files = $request->file('photos');
+            foreach($files as $file){
+                $filename = $file->getClientOriginalName();
+                $imagename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $check=in_array($extension,$allowedfileExtension);
+                if($check){
+                        foreach ($request->photos as $photo) {
+                            $filename = $photo->move(public_path('storage/photos/'),$filename);
+                            Photo::create([
+                                'name' => $imagename,
+                                'album_id' =>$album->id,
+                            ]);
+                        }
+                } 
+            }
+        Session::flash('success', 'Album créer avec succès'); 
+        return redirect(route('albums.index'));
+        }else{
+            echo '<div class="alert alert-warning"><strong>Attention</strong>Vous ne pouvez upload que des png, jpg ou doc</div>';
+
+    }   
+}
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {   
+        $album = Album::with('user','photos')->find($id);
+        return view('albums.show',compact('album'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Album $album)
+    {
+        $album->delete();
+        return redirect(route('albums.index'));
+    }
+}
