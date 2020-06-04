@@ -1,0 +1,4 @@
+/.env
+/public/storage/photos/*
+/public/storage/img/*
+/config/app.php
