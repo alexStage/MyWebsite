@@ -18,6 +18,10 @@ class CreatePhotosTable extends Migration
             $table->longtext('name');
             $table->timestamps();
         });
+
+        Schema::table('comments', function(Blueprint  $table){
+            $table->integer('photos_id')->unsigned()->index()->nullable();
+        });
     }
 
     /**

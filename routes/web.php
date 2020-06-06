@@ -24,9 +24,10 @@ Route::get('/', 'RootController@index')->name('root');
 Route::resource('/messages','MessageController');
 Route::resource('/albums', 'AlbumController');
 Route::resource('/photos', 'PhotoController')->only(['store','destroy','show']);
-Route::resource('/games', 'GameController');
+Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
+Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
+//Route::resource('/games', 'GameController');
 
-Route::get('/game1', 'GameController@game1')->name('game');
 //Route::get('/gameTest', 'GameController@gameTest')->name('Test');
 //Route::get('/gameRpg', 'GameController@gameRPG')->name('RPG');
 

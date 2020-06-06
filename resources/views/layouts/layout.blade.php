@@ -29,9 +29,6 @@
                         <li class="nav-item active">
                             <a class="nav-link" target="_self" href="{{route('albums.index')}}">Albums</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" target="_self" href="{{route('games.index')}}">Jeu</a>
-                        </li>
                     </ul>   
                 @endauth
             </div>

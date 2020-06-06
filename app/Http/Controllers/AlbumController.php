@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Album;
 use App\User;
 use App\Photo;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -108,7 +109,8 @@ class AlbumController extends Controller
     public function show($id)
     {   
         $album = Album::with('user','photos')->find($id);
-        return view('albums.show',compact('album'));
+        $comments = Comment::with('user')->where('album_id', '=', $id);
+        return view('albums.show',compact('album', 'comments'));
     }
 
     /**
@@ -164,6 +166,20 @@ class AlbumController extends Controller
         $photos = DB::table('photos')->where('album_id', $album->id);
         $photos->delete();
         Session::flash('success', 'album supprimé');
+        return redirect(route('albums.index'));
+    }
+
+    public function comment(Album $album, Request $request){
+        $validatedData = $request->validate([
+            'content' => 'required',
+        ]);
+
+        Comment::create([
+            'user_id' => Auth::user()->id,
+            'album_id' => $album->id,
+            'content' => $request->content,
+        ]);
+
         return redirect(route('albums.index'));
     }
 }

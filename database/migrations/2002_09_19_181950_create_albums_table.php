@@ -23,6 +23,10 @@ class CreateAlbumsTable extends Migration
         Schema::table('photos', function(Blueprint $table){
             $table->integer('album_id')->integer()->index();
         });
+
+        Schema::table('comments', function(Blueprint  $table){
+            $table->integer('album_id')->unsigned()->index()->nullable();
+        });
     }
 
     /**

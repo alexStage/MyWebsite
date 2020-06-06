@@ -6,6 +6,24 @@
     <h1 class="jumbotron-heading">{{$album->title}}</h1>
     <p class="lead text-muted">{{$album->content}}</p>
     <small>publié par: {{$album->user->name}}</small>
+      <div class="panel-body">
+      {{Form::open(['route'=>['albums.comment', $album]])}}   
+        <div class="form-group">
+          {{Form::label('content', 'laissez un commentaire:')}}
+          {{Form::text('content',null, ['class'=>'form-control'])}}
+        </div>
+        <div class="form-group"></div>
+          {{Form::submit('Commenter',['class'=>'btn btn-primary form-control'])}}
+        </div>
+        
+        {{Form::close()}}
+    </div>
+    <!--<div class="container">
+      @foreach($album->comments as $comment)
+        <p>{{$comment->content}}</p>
+        <p>{{$comment->user->name}}</p>
+      @endforeach
+    </div>-->
   </div>
   @if(session('success'))
     <div class="container">

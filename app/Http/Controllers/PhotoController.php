@@ -115,4 +115,18 @@ class PhotoController extends Controller
         Session::flash('success', 'Photo supprimée'); 
         return Redirect::back();
     }
+
+    public function comment(Photo $photo){
+        $validatedData = $request->validate([
+            'content' => 'required',
+        ]);
+
+        Comment::create([
+            'user_id' => Auth::user()->id,
+            'photo_id' => $photo->id,
+            'content' => $request->content,
+        ]);
+
+        return redirect(route('albums.index')); //changer albums.index quand j'aurai créé le photo.index
+    }
 }

@@ -6,7 +6,6 @@
 
 <p>{{$game->titre}}</p>
 <p>{{$game->slug}}</p>
-<img src="/home/dhaene/Images/disney/{{$game->photo}}">
 
 @endforeach
 

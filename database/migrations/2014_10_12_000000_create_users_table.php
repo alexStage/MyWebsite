@@ -31,6 +31,12 @@ class CreateUsersTable extends Migration
         Schema::table('messages',function(Blueprint $table){
             $table->integer('user_id')->unsigned()->index();
         });
+
+        Schema::table('comments',function(Blueprint $table){
+            $table->integer('user_id')->unsigned()->index();
+        });
+
+
     }
 
     /**
