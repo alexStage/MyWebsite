@@ -15,10 +15,6 @@ use Validator;
 
 class AlbumController extends Controller
 {
-    
-    public function __construct(){
-        $this->middleware('auth');
-    }
 
     //upload photos
     public function upload($request){

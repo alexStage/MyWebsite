@@ -11,15 +11,8 @@
 |
 */
 
-Route::get('/', 'RootController@index')->name('root');
+Route::get('/', 'AlbumController@index')->name('root');
 
-//Route::get('/', function () {
-//	if(Auth::check()){
-//		return redirect(route('home'));
-//	}else{
-//		return view('auth/login');
-//	}
-//});
 
 Route::resource('/messages','MessageController');
 Route::resource('/albums', 'AlbumController');
