@@ -16,13 +16,16 @@
     <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <a class="navbar-brand" target="_self" href="#">
             <img src="{{asset('storage/img/logo-laeti.jpg')}}" width="60" height="60" alt=""> Manava
         </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 @auth
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                             <a class="nav-link" target="_self" href="{{route('messages.index')}}">Messages</a>
                         </li>
@@ -31,49 +34,40 @@
                         </li>
                     </ul>   
                 @endauth
-            </div>
-            <script type="text/javascript">
-                window.onload=function() {
-                horloge('div_horloge');
-              };
-            </script>
-              
-            <ul class="navbar-nav justify-content-center" id="div_horloge"></ul>
-            
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
-                @auth
-                @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" target="_self" href="{{ route('register') }}">{{ __('Senregistrer') }}</a>
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @if (Route::has('register'))
+                            <li>
+                                <a class="nav-link" target="_self" href="{{ route('register') }}">{{ __('S\'enregistrer') }}</a>
+                            </li>
+                    @endif
+                    @guest
+                        <li>
+                            <a class="nav-link" target="_self" href="{{ route('login') }}"><span class="glyphicon glyphicon-user"></span>{{ __('Se connecter') }}</a>
                         </li>
-                @endif
-                @endauth
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" target="_self" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                @else
+                    @else
 
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
+            
     </nav>
 
 
