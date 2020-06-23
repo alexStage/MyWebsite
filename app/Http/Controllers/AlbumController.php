@@ -40,7 +40,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $albums = Album::with('user','photos')->simplePaginate(8);
+        $albums = Album::with('user','photos','comments')->simplePaginate(8);
   	    return view('albums.index', compact('albums'));
     }
 

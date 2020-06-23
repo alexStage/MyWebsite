@@ -18,13 +18,7 @@
         
         {{Form::close()}}
     </div>
-    <!--<div class="container">
-      @foreach($album->comments as $comment)
-        <p>{{$comment->content}}</p>
-        <p>{{$comment->user->name}}</p>
-      @endforeach
-    </div>-->
-  </div>
+
   @if(session('success'))
     <div class="container">
       <div class="alert alert-success">
@@ -33,19 +27,34 @@
     </div>
   @endif
 </section>
-	
-<div class="album py-5 bg-light">
-    <div class="container">
+
+    <div class="container-fluid text-center">
       <div class="row">
-      	@foreach($album->photos as $photo)
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="{{asset('storage/photos/'.$photo->name)}}" alt="Card image cap">
+        <div class="col-sm-3">
+          <h1>Commentaires</h1>
+          @foreach($album->comments as $comment)
+          <div class="media border p-3">
+            <div class="media-body">
+                <h4>{{$comment->user->name}}<small><i> posté le: {{$comment->created_at}}</i></small></h4>
+                <p>{{$comment->content}}</p>
+            </div>
+          </div>
+          @endforeach
+        </div>
+	     <div class="col-sm-9">
+        <div class="album py-5 bg-light">
+            <div class="container">
+              <div class="row">
+              	@foreach($album->photos as $photo)
+                <div class="col-md-4">
+                  <div class="card mb-4 box-shadow">
+                    <a href="{{asset('storage/photos/'.$photo->name)}}"><img class="card-img-top" src="{{asset('storage/photos/'.$photo->name)}}" alt="Card image cap"></a>
+                  </div>
+                </div>
+                @endforeach
+              </div>
+            </div>
           </div>
         </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
 
 @stop

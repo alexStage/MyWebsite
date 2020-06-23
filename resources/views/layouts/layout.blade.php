@@ -6,7 +6,7 @@
         <base href="{{URL::asset('/')}}" target="_blank">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('css/siteTahiti.css')}}">
-        <link rel="icon" href="asset('storage/img/logo-laeti.jpg')" />
+        <link rel="icon" href="{{asset('storage/img/logo-laeti.jpg')}}">
         <script type="text/javascript" src="{{url('js/phaser.js')}}"></script>
         <script type="text/javascript" src="{{url('js/phaser.min.js')}}"></script>
         <script type="text/javascript" src="{{url('js/jQuery.js')}}"></script>
