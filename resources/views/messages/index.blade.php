@@ -38,15 +38,12 @@
 
       <div class="album py-5 bg-light">
         <div class="container">
-
-          <div class="row">
-          	@foreach($messages as $message)
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <div class="card-body">
-                  <p class="card-text">{{$message->content}}</p>
-                  <p class="card-text">{{$message->title}}</p>
-                  <div class="d-flex justify-content-between align-items-center">
+          @foreach($messages as $message)
+          <div class="media border p-3">
+            <div class="media-body">
+              <h4>{{$message->user->name}}<small><i> Posté le: {{$message->created_at}}</i></small></h4>
+              <p>{{$message->content}}</p>
+              <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       @if(Auth::user()->id == $message->user->id || Auth::user()->is_admin)
                         {{Form::open(['method'=>'DELETE', 'route'=>['messages.destroy', $message], 'target'=>'_self'])}}
@@ -54,13 +51,11 @@
                         {{ Form::close() }}
                       @endif
                     </div>
-                    <small class="text-muted">Signé: {{$message->user->name}}</small>
-                  </div>
-                </div>
-              </div>
+                  </div>      
             </div>
-            @endforeach
           </div>
+          @endforeach
+
         </div>
       </div>
 </main>
