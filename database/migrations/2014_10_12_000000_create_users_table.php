@@ -36,6 +36,10 @@ class CreateUsersTable extends Migration
             $table->integer('user_id')->unsigned()->index();
         });
 
+        Schema::table('photos', function(Blueprint $table){
+            $table->integer('user_id')->unsigned()->index()->nullable();
+        });
+
 
     }
 

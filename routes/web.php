@@ -19,6 +19,8 @@ Route::resource('/albums', 'AlbumController');
 Route::resource('/photos', 'PhotoController')->only(['store','destroy','show']);
 Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
 Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
+Route::get('/profile', 'ProfileController@photo')->name('profile.photo');
+Route::post('/profile', 'ProfileController@edit')->name('profile.edit');
 //Route::resource('/games', 'GameController');
 
 //Route::get('/gameTest', 'GameController@gameTest')->name('Test');

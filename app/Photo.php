@@ -8,7 +8,7 @@ use App\Comment;
 
 class Photo extends Model
 {
-    protected $fillable = ['name','album_id'];
+    protected $fillable = ['name','album_id', 'user_id'];
 
     public function album(){
     	return $this->belongsTo('App\Album');
@@ -16,5 +16,9 @@ class Photo extends Model
 
     public function comments(){
     	return $this->hasMany('App\Comment');
+    }
+
+    public function user(){
+    	return $this->belongsTo('App\User');
     }
 }

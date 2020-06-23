@@ -40,6 +40,7 @@
         <div class="container">
           @foreach($messages as $message)
           <div class="media border p-3">
+            <img src="{{asset('storage/photos/'.$message->user->photo->name)}}" class="mr-3 mt-3 rounded-circle" style="width:60px;">
             <div class="media-body">
               <h4>{{$message->user->name}}<small><i> Posté le: {{$message->created_at}}</i></small></h4>
               <p>{{$message->content}}</p>

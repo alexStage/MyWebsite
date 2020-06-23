@@ -22,7 +22,7 @@
 				{{Form::submit('Publier',['class'=>'btn btn-primary form-control'])}}
 			</div>
 			
-			{{Form::close()}}
+		{{Form::close()}}
 	</div>
 
 
