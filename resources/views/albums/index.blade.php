@@ -27,8 +27,8 @@
 
           <div class="row">
           	@foreach($albums as $album)
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
+            <div class="col-md-4 ">
+              <div class="card mb-4 shadow-lg p-4 mb-4 bg-white">
                 @if(isset($album->photos[0]))
                 <img class="card-img-top" src="{{asset('storage/photos/'.$album->photos[0]->name)}}" alt="Card image cap">
                 @endif

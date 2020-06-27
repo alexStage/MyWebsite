@@ -39,9 +39,9 @@
       <div class="album py-5 bg-light">
         <div class="container">
           @foreach($messages as $message)
-          <div class="media border p-3">
+          <div class="media border p-3 shadow-lg p-4 mb-4 bg-white">
             @if($message->user->photo != NULL)
-            <img src="{{asset('storage/photos/'.$message->user->photo->name)}}" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+            <img src="{{asset('storage/photos/'.$message->user->photo->name)}}" class="mr-3 mt-3 rounded-circle" width=80px height="80px">
             @endif
             <div class="media-body">
               <h4>{{$message->user->name}}<small><i> Posté le: {{$message->created_at}}</i></small></h4>
