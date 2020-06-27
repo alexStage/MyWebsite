@@ -6,6 +6,7 @@ use App\Message;
 use Auth;
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Facades\Storage;
 
 class MessageController extends Controller
 {

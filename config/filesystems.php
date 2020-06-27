@@ -82,4 +82,20 @@ return [
         public_path('storage') => storage_path('app/public'),
     ],
 
+    'sftp' => [
+        'driver' => 'sftp',
+        'host' => 'localhost',
+        'username' => 'dhaene',
+        'password' => 'Onepiece@ir91',
+
+        // Settings for SSH key based authentication...
+        // 'privateKey' => '/path/to/privateKey',
+        // 'password' => 'encryption-password',
+
+        // Optional SFTP Settings...
+        // 'port' => 22,
+        // 'root' => '',
+        // 'timeout' => 30,
+    ],
+
 ];
