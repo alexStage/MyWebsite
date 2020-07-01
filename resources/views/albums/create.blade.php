@@ -33,6 +33,11 @@
 		{{Form::close()}}
 
 	</div>
+
+	<div class="progress">
+		<div class="progress-bar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+	</idv>
+
 	@if($errors->any())
 		<div class="alert alert-danger">
 			<ul>
@@ -44,4 +49,27 @@
 	@endif
 </div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$('form').ajaxForm({
+			beforeSend:function(){
+				$('#success').empty();
+				$('.progress-bar').text('0%');
+				$('.progress-bar').css('width', '0%');
+			},
+			uploadProgress:function(event, position, total, percentComplete){
+				$('.progress-bar').text(percentComplete + '0%');
+				$('.progress-bar').css('width', percentComplete +'0%');
+			},
+			success:function(data){
+				if(data.success){
+					$('#success').html('<div class="text-success text-center"><b>'+data.success+'</b></div><br /><br />');
+					$('.progress-bar').text('Uploaded');
+					$('.progress-bar').css('width', '100%');
+				}
+			}
+		})
+	});
+</script>
 @stop

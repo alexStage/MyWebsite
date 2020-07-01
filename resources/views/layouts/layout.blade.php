@@ -11,7 +11,8 @@
         <script type="text/javascript" src="{{url('js/phaser.min.js')}}"></script>
         <script type="text/javascript" src="{{url('js/jQuery.js')}}"></script>
         <script type="text/javascript" src="{{url('js/clock.js')}}"></script>
-        <title>Site Tahiti</title>
+        <script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script>
+        <title>Carnet de voyages</title>
     </head>
     <body>
 

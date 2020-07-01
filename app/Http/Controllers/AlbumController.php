@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 use Validator;
+use App\Jobs\UploadAlbum;
 
 class AlbumController extends Controller
 {
 
     //upload photos
-    public function upload($request){
+    public function upload($request, $album){
         if($request->hasFile('photos')){ 
             foreach ($request->photos as $photo) {
                 $photoName = $photo->getClientOriginalName();
@@ -28,7 +29,6 @@ class AlbumController extends Controller
                         'album_id' =>$album->id,
                         ]);
             }
-
         }
     }
 
@@ -77,19 +77,14 @@ class AlbumController extends Controller
             'user_id'=> Auth::user()->id,
         ]);
 
-        //$this->upload($request);
+        $this->upload($request, $album);
 
-        if($request->hasFile('photos')){ 
-            foreach ($request->photos as $photo) {
-                $photoName = $photo->getClientOriginalName();
-                $name = now().$photoName;
-                $filename = $photo->move(public_path('storage/photos/'),$name);
-                    Photo::create([
-                        'name' => $name,
-                        'album_id' =>$album->id,
-                        ]);
-            }
-        }
+        //if($request->hasFile('photos')){
+        //    foreach($request->photos as $photo){
+        //        $photos = $request->photos; 
+        //       $this->dispatch(new UploadAlbum($photos));
+        //    }
+        //}
            
         Session::flash('success', 'Album créé avec succès'); 
         return redirect(route('albums.index'));
