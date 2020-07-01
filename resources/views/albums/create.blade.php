@@ -10,7 +10,7 @@
 	
 	<div class="panel-body">
 		{{Form::open(array('route' => 'albums.store','files'=>'true', 'enctype' =>'multipart/form-data','target' => '_self'))}}
-
+			@csrf
 			<div class="form-group">
 				{{Form::label('title', 'Intitulé de l\'album:')}}
 				{{Form::text('title',null, ['class'=>'form-control'])}}
@@ -42,7 +42,7 @@
 		<div class="alert alert-danger">
 			<ul>
 				@foreach($errors->all() as $error)
-				<p>{{$error}}</p>
+					<p>{{$error}}</p>
 				@endforeach
 			</ul>
 		</div>
@@ -59,7 +59,7 @@
 				$('.progress-bar').css('width', '0%');
 			},
 			uploadProgress:function(event, position, total, percentComplete){
-				$('.progress-bar').text(percentComplete + '0%');
+				$('.progress-bar').text(percentComplete + '%');
 				$('.progress-bar').css('width', percentComplete +'0%');
 			},
 			success:function(data){
