@@ -15,7 +15,8 @@ use Validator;
 use App\Jobs\UploadAlbum;
 
 class AlbumController extends Controller
-{
+{   
+
 
     //upload photos
     public function upload($request, $album){
@@ -29,7 +30,7 @@ class AlbumController extends Controller
                         'album_id' =>$album->id,
                         ]);
             }
-        }
+        }   
     }
 
 
@@ -62,7 +63,6 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
         
             'title' => 'required',
