@@ -60,7 +60,7 @@
 			},
 			uploadProgress:function(event, position, total, percentComplete){
 				$('.progress-bar').text(percentComplete + '%');
-				$('.progress-bar').css('width', percentComplete +'0%');
+				$('.progress-bar').css('width', percentComplete +'%');
 			},
 			success:function(data){
 				if(data.success){
