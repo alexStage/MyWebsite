@@ -1,7 +1,7 @@
 <?php
 
 //root
-Route::get('/', 'AlbumController@index')->name('album.index');
+Route::get('/', 'AlbumController@index')->name('albums.index');
 
 //resources
 Route::resource('/messages','MessageController');
