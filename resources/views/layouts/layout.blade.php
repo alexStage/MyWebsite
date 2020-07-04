@@ -30,7 +30,7 @@
                             <a class="nav-link" target="_self" href="{{route('messages.index')}}">Messages</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" target="_self" href="{{route('albums.index')}}">Albums</a>
+                            <a class="nav-link" target="_self" href="{{route('root')}}">Albums</a>
                         </li>
                     </ul>   
                 @endauth
