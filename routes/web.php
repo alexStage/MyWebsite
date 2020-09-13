@@ -25,5 +25,10 @@ Route::middleware(['auth'])->group(function () {
 	//comments
 	Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
 	Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
+	Route::get('/downloads', 'DownloadController@index')->name('downloads');
     
 });
+
+//storage test
+
+Route::get('/test', 'StorageController@index')->name('storage');

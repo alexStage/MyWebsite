@@ -32,6 +32,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" target="_self" href="{{route('albums.index')}}">Albums</a>
                         </li>
+                        <li class="nav-item active">
+                        <a class="nav-link" target="_self" href="{{route('downloads')}}">Téléchargements</a>
+                        </li>
                     </ul>   
                 @endauth
                 <ul class="navbar-nav ml-auto">
