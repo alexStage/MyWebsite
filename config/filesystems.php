@@ -48,19 +48,21 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'downloads' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/downloads'),
+            'visibility' => 'public',
+        ],
+
+        'photos' =>[
+            'driver' => 'local',
+            'root' => storage_path('app/public/photos'),
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'permissions' => [
-                'file' => [
-                    'public' => 0664,
-                    'private' => 0600,
-                ],
-                'dir' => [
-                    'public' => 0775,
-                    'private' => 0700,
-                ],
-            ],
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
@@ -90,6 +92,8 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path() => storage_path('app/downloads'),
+        public_path('photos') => storage_path('app/public/photos'),
     ],
 
     'sftp' => [
