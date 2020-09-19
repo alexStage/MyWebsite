@@ -2,3 +2,7 @@
 /public/storage/photos/*
 /public/storage/img/*
 /config/app.php
+/vendor
+/public/downloads
+/public/archives
+/storage

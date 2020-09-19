@@ -25,8 +25,9 @@ Route::middleware(['auth'])->group(function () {
 	//comments
 	Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
 	Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
-	Route::get('/downloads', 'DownloadController@index')->name('downloads');
-    
+	Route::get('/téléchargements', 'DownloadController@index')->name('downloads');
+	Route::get('/archive', 'ArchiveController@index')->name('archives.index');
+	Route::get('/archive/{directory}', 'ArchiveController@showDirectory')->name('archives.showDirectory')->where('directory', '(.*)');
 });
 
 //storage test

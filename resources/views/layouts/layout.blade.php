@@ -21,7 +21,7 @@
         </button>
 
         <a class="navbar-brand" target="_self" href="#">
-            <img src="{{asset('storage/img/logo-laeti.jpg')}}" width="60" height="60" alt=""> Manava
+            <img src="{{asset('assets/logo-laeti.jpg')}}" width="60" height="60" alt=""> Manava
         </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 @auth

@@ -48,22 +48,24 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'downloads' =>[
-            'driver' => 'local',
-            'root' => storage_path('app/downloads'),
-            'visibility' => 'public',
-        ],
-
-        'photos' =>[
-            'driver' => 'local',
-            'root' => storage_path('app/public/photos'),
-            'visibility' => 'public',
-        ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'downloads' => [
+            'driver' => 'local',
+            'root' => storage_path('app/downloads'),
+            'url' => env('APP_URL').'/downloads',
+            'visibility' => 'public',
+        ],
+
+        'archives' => [
+            'driver' => 'local',
+            'root' => 'D:\Images',
+            'url' => env('APP_URL').'/archives',
             'visibility' => 'public',
         ],
 
@@ -92,15 +94,13 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path() => storage_path('app/downloads'),
-        public_path('photos') => storage_path('app/public/photos'),
     ],
 
     'sftp' => [
         'driver' => 'sftp',
         'host' => 'localhost',
-        'username' => 'dhaene',
-        'password' => 'Onepiece@ir91',
+        'username' => '',
+        'password' => '',
 
         // Settings for SSH key based authentication...
         // 'privateKey' => '/path/to/privateKey',
