@@ -3,7 +3,7 @@
 
 @foreach($files as $file)
     <div class="container-fluid text-center">
-        <a href="{{asset($file)}}" download="{{Storage::disk('downloads')->url($file)}}">{{$file}}</a>
+        <a href="{{Storage::disk('downloads')->url($file)}}" download="{{Storage::disk('downloads')->url($file)}}">{{$file}}</a>
     </div>
 @endforeach
 
