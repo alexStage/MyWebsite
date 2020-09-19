@@ -8,7 +8,7 @@ use Storage;
 class DownloadController extends Controller
 {
     public function index(){
-        $files = Storage::files('downloads');
+        $files = Storage::disk('downloads')->files();
         return view('downloads.show', compact('files'));
     }
 }

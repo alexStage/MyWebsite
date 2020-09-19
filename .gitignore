@@ -5,3 +5,4 @@
 /public/downloads
 /public/archives
 /storage
+/config/filesystems.php
