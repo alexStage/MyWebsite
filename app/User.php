@@ -30,6 +30,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isAdmin(){
+        return $this->admin; // retourne vrai ou faux selon le boolean admin dans la base
+    }
+
+    public function isFamily(){
+        return $this->family; // retourne vrai ou faux selon le boolean family dans la base
+    }
+
     /**
      * The attributes that should be cast to native types.
      *

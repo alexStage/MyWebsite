@@ -1,18 +1,17 @@
 @extends('layouts.layout')
 @section('content')
 
-<div class="container">
+<div class="container-fluid text-center">
     <div class="row">
         @foreach($directories as $directory)
-            <!--<a target="_self" href="archive/{{$directory}}"><img src="{{asset('assets/folder.png')}}" alt="{{$directory}}" width="128" height="128"></a>-->
-            <a target="_self" href="{{route('archives.showDirectory', compact('directory'))}}"><img src="{{asset('assets/folder.png')}}" alt="{{$directory}}" width="128" height="128"></a>
+            <div class="col-sm-4">
+            <div class="card mb-4 box-shadow bg-light">
+                <a target="_self" href="{{route('archives.showDirectory', compact('directory'))}}"><img src="{{asset('assets/folder.png')}}" alt="{{$directory}}" width="128" height="128"></a>
+                <p>{{$directory}}</p>
+            </div>   
+            </div>
         @endforeach
     </div>
-</div>
-
-
-
-<div class="container">
     <div class="row">
         @foreach($files as $file)
             <div class="col-md-4">

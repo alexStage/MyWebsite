@@ -19,17 +19,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::middleware(['auth'])->group(function () {
-
-
+	//create albums
 	Route::get('/albums','AlbumController@create')->name('albums.create');
 	//comments
 	Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
 	Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
+	//downloads
 	Route::get('/téléchargements', 'DownloadController@index')->name('downloads');
-	Route::get('/archive', 'ArchiveController@index')->name('archives.index');
+	//archives
+	Route::get('/archive', 'ArchiveController@index')->name('archives.index')->middleware('Family');
 	Route::get('/archive/{directory}', 'ArchiveController@showDirectory')->name('archives.showDirectory')->where('directory', '(.*)');
 });
-
-//storage test
-
-Route::get('/test', 'StorageController@index')->name('storage');

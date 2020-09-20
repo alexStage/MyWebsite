@@ -33,8 +33,13 @@
                             <a class="nav-link" target="_self" href="{{route('albums.index')}}">Albums</a>
                         </li>
                         <li class="nav-item active">
-                        <a class="nav-link" target="_self" href="{{route('downloads')}}">Téléchargements</a>
+                            <a class="nav-link" target="_self" href="{{route('downloads')}}">Téléchargements</a>
                         </li>
+                        @if(Auth::user()->isFamily())
+                        <li class="nav-item active">
+                            <a class="nav-link" target="_self" href="{{route('archives.index')}}">Archives</a>
+                        </li>
+                        @endif
                     </ul>   
                 @endauth
                 <ul class="navbar-nav ml-auto">
@@ -82,6 +87,11 @@
                 <div class="alert alert-primary" role="alert">
                     {{session('status')}}
                 </div>
+            @endif
+            @if(Session::has('warning'))
+            <div class="alert alert-warning" role="alert">
+                {{session('warning')}}
+            </div>
             @endif
             <br>
             <br>
