@@ -551,6 +551,7 @@ class ComposerStaticInitd60685cc87645c25db363663666c0998
         'App\\Album' => __DIR__ . '/../..' . '/app/Album.php',
         'App\\Comment' => __DIR__ . '/../..' . '/app/Comment.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Etiquette' => __DIR__ . '/../..' . '/app/Etiquette.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Game' => __DIR__ . '/../..' . '/app/Game.php',
         'App\\Http\\Controllers\\AlbumController' => __DIR__ . '/../..' . '/app/Http/Controllers/AlbumController.php',

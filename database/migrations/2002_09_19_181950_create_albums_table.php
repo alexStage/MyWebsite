@@ -27,6 +27,10 @@ class CreateAlbumsTable extends Migration
         Schema::table('comments', function(Blueprint  $table){
             $table->integer('album_id')->unsigned()->index()->nullable();
         });
+
+        Schema::table('etiquettes-albums', function(Blueprint $table){
+            $table->integer('album_id')->unsigned()->index()->nullable();
+        });
     }
 
     /**

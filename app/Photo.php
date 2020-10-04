@@ -21,4 +21,8 @@ class Photo extends Model
     public function user(){
     	return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function etiquettes(){
+        return $this->belongsToMany('App\Etiquette');
+    }
 }

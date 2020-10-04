@@ -3,6 +3,6 @@
 /public/storage/img/*
 /config/app.php
 /public/downloads
-/public/archives
+/public/archive
 /storage
 /config/filesystems.php

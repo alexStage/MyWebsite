@@ -65,7 +65,7 @@ return [
         'archives' => [
             'driver' => 'local',
             'root' => 'D:\Images',
-            'url' => env('APP_URL').'/archives',
+            'url' => env('APP_URL').'/archive',
             'visibility' => 'public',
         ],
 

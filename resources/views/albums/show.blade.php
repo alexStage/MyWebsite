@@ -43,18 +43,18 @@
         </div>
 	     <div class="col-sm-9">
         <div class="album py-5 bg-light">
-            <div class="container">
-              <div class="row">
-              	@foreach($album->photos as $photo)
-                <div class="col-md-4">
-                  <div class="card mb-4 box-shadow">
-                    <a href="{{asset('storage/photos/'.$photo->name)}}"><img class="card-img-top" src="{{asset('storage/photos/'.$photo->name)}}" alt="Card image cap"></a>
-                  </div>
+          <div class="container">
+            <div class="row">
+              @foreach($album->photos as $photo)
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <a href="{{asset('storage/photos/'.$photo->name)}}"><img class="card-img-top" src="{{asset('storage/photos/'.$photo->name)}}" alt="Card image cap"></a>
                 </div>
-                @endforeach
               </div>
+              @endforeach
             </div>
           </div>
         </div>
+    </div>
 
 @stop

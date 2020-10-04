@@ -1,5 +1,4 @@
 <?php
-
 //root
 Route::get('/', 'AlbumController@index')->name('albums.index');
 
@@ -26,7 +25,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
 	//downloads
 	Route::get('/téléchargements', 'DownloadController@index')->name('downloads');
-	//archives
-	Route::get('/archive', 'ArchiveController@index')->name('archives.index')->middleware('Family');
-	Route::get('/archive/{directory}', 'ArchiveController@showDirectory')->name('archives.showDirectory')->where('directory', '(.*)');
+});
+
+Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function(){
+	Route::get('', 'ArchiveController@index')->name('archives.index');
+	Route::get('/{directory}', 'ArchiveController@showDirectory')->name('archives.showDirectory')->where('directory', '(.*)');
 });

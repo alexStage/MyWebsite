@@ -6,7 +6,8 @@
         <base href="{{URL::asset('/')}}" target="_blank">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('css/siteTahiti.css')}}">
-        <link rel="icon" href="{{asset('storage/img/logo-laeti.jpg')}}">
+        <link rel="stylesheet" type="text/css" href="{{url('css/simple-sidebar.css')}}">
+        <link rel="icon" href="{{asset('assets/seaTheWorld2.png')}}">
         <script type="text/javascript" src="{{url('js/phaser.min.js')}}"></script>
         <script type="text/javascript" src="{{url('js/jQuery.js')}}"></script>
         <script type="text/javascript" src="{{url('js/clock.js')}}"></script>
@@ -38,7 +39,7 @@
         </ul>
 
 
-        <ul class="nav navbar-nav navbar-center">
+        <ul class="navbar-nav navbar-center">
             <li><a class="navbar-brand" target="_self" href="#"><img src="{{asset('assets/seaTheWorld2.png')}}" width="164" height="105" alt=""></a></li>
         </ul>
 
@@ -92,12 +93,18 @@
                 {{session('warning')}}
             </div>
             @endif
-            <br>
-            <br>
             @yield('content')
             
 
         <script type="text/javascript" src="{{url('js/popper.min.js')}}"></script>        
         <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('js/bootstrap.bundle.min.js')}}"></script>
+        <script>
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
     </body>
 </html>
