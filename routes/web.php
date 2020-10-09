@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/téléchargements', 'DownloadController@index')->name('downloads');
 });
 
-Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth', 'optimizeImages']],function(){
+Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function(){
 	Route::get('', 'ArchiveController@index')->name('archives.index');
 	Route::get('/{directory}', 'ArchiveController@showDirectory')->name('archives.showDirectory')->where('directory', '(.*)');
 });

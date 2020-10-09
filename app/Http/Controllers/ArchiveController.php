@@ -16,14 +16,13 @@ class ArchiveController extends Controller
      
     public function index(){
         $directories = Storage::disk('archives')->allDirectories();
-        $files = Storage::disk('archives')->files();
         foreach($directories as $directory){
             $files = Storage::disk('archives')->files($directory);
             if($files == NULL){
                 unset($directories[array_search($directory, $directories)]);
             }
         }
-        return view('archive.index', compact('files', 'directories'));
+        return view('archive.index', compact('directories'));
     }
 
     public function showDirectory($directory){

@@ -11,7 +11,7 @@
 
     <div id="page-content-wrapper">
     <button class="btn btn-primary" id="menu-toggle">dossiers</button>
-
+        @if(isset($files))
         <div class="container-fluid text-center">
             <div class="row">
                 @foreach($files as $file)
@@ -23,8 +23,8 @@
                 @endforeach
             </div>
         </div>
+        @endif
     </div>
 </div>
 <script src="{{asset('js/button-folder.js')}}"></script>
-<script src="js/app.js"></script>
 @stop
