@@ -4813,6 +4813,126 @@
         "homepage": "https://github.com/sebastianbergmann/version"
     },
     {
+        "name": "spatie/image-optimizer",
+        "version": "1.2.1",
+        "version_normalized": "1.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/image-optimizer.git",
+            "reference": "9c1d470e34b28b715d25edb539dd6c899461527c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/9c1d470e34b28b715d25edb539dd6c899461527c",
+            "reference": "9c1d470e34b28b715d25edb539dd6c899461527c",
+            "shasum": ""
+        },
+        "require": {
+            "ext-fileinfo": "*",
+            "php": "^7.2",
+            "psr/log": "^1.0",
+            "symfony/process": "^4.2|^5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^8.0",
+            "symfony/var-dumper": "^4.2|^5.0"
+        },
+        "time": "2019-11-25T12:29:24+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Spatie\\ImageOptimizer\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Freek Van der Herten",
+                "email": "freek@spatie.be",
+                "homepage": "https://spatie.be",
+                "role": "Developer"
+            }
+        ],
+        "description": "Easily optimize images using PHP",
+        "homepage": "https://github.com/spatie/image-optimizer",
+        "keywords": [
+            "image-optimizer",
+            "spatie"
+        ]
+    },
+    {
+        "name": "spatie/laravel-image-optimizer",
+        "version": "1.6.3",
+        "version_normalized": "1.6.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/laravel-image-optimizer.git",
+            "reference": "8c7cb83f5bd0dc5484c9918fdb0a9bf608a29c2c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/laravel-image-optimizer/zipball/8c7cb83f5bd0dc5484c9918fdb0a9bf608a29c2c",
+            "reference": "8c7cb83f5bd0dc5484c9918fdb0a9bf608a29c2c",
+            "shasum": ""
+        },
+        "require": {
+            "laravel/framework": "^6.0|^7.0|^8.0",
+            "php": "^7.2",
+            "spatie/image-optimizer": "^1.2.0"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2.16",
+            "orchestra/testbench": "^4.0|^5.0|^6.0",
+            "phpunit/phpunit": "^9.0"
+        },
+        "time": "2020-09-08T19:46:59+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Spatie\\LaravelImageOptimizer\\ImageOptimizerServiceProvider"
+                ],
+                "aliases": {
+                    "ImageOptimizer": "Spatie\\LaravelImageOptimizer\\Facades\\ImageOptimizer"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Spatie\\LaravelImageOptimizer\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Freek Van der Herten",
+                "email": "freek@spatie.be",
+                "homepage": "https://spatie.be",
+                "role": "Developer"
+            }
+        ],
+        "description": "Optimize images in your Laravel app",
+        "homepage": "https://github.com/spatie/laravel-image-optimizer",
+        "keywords": [
+            "laravel-image-optimizer",
+            "spatie"
+        ],
+        "funding": [
+            {
+                "url": "https://spatie.be/open-source/support-us",
+                "type": "custom"
+            }
+        ]
+    },
+    {
         "name": "swiftmailer/swiftmailer",
         "version": "v6.2.3",
         "version_normalized": "6.2.3.0",

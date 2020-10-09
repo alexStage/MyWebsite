@@ -23,11 +23,21 @@ Route::middleware(['auth'])->group(function () {
 	//comments
 	Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
 	Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
+	Route::post('/comments', 'AlbumController@jscomment');
 	//downloads
 	Route::get('/téléchargements', 'DownloadController@index')->name('downloads');
 });
 
-Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function(){
+Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth', 'optimizeImages']],function(){
 	Route::get('', 'ArchiveController@index')->name('archives.index');
 	Route::get('/{directory}', 'ArchiveController@showDirectory')->name('archives.showDirectory')->where('directory', '(.*)');
 });
+
+
+//test vue.js
+Route::get('/vues', function(){
+	return view('vues.show');
+});
+
+Route::get('/directories', 'ArchiveController@getDirectories');
+Route::get('/subDirectories/{directory}', 'ArchiveController@getSubDirectories');

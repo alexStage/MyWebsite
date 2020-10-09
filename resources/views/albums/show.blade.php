@@ -24,7 +24,7 @@
       <div class="alert alert-success">
         <strong>{{session('success')}}</strong> 
       </div>
-    </div>
+    </div> 
   @endif
 </section>
 
@@ -56,5 +56,5 @@
           </div>
         </div>
     </div>
-
+    <script src="/js/app.js"></script>
 @stop

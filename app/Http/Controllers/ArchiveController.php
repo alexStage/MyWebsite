@@ -35,6 +35,18 @@ class ArchiveController extends Controller
                 unset($directories[array_search($directory, $directories)]);
             }
         }
+
         return view('archive.index', compact('files', 'directories'));
+    }
+
+    public function getDirectories(){
+        $directories = Storage::disk('archives')->allDirectories();
+        return $directories;
+    }
+    public function getSubDirectories($directory){
+        $directories = Storage::disk('archives')->directories($directory);
+        $files = Storage::disk('archives')->files($directory);
+        $path = Storage::path($directory);
+        return $directories;        
     }
 }

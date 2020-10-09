@@ -1,17 +1,13 @@
 @extends('layouts.layout')
 @section('content')
 
+
 <div class="d-flex" id="wrapper">
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">dossiers</div>
-      
-      <div id="folder-list" class="list-group list-group-flush sticky">
+   <div id="folder-list" class="list-group list-group-flush sticky">
         @foreach($directories as $directory)
             <a class="list-group-item list-group-item-action bg-light" target="_self" href="{{route('archives.showDirectory', compact('directory'))}}"><img src="{{asset('assets/folder.png')}}" alt="{{$directory}}" width="12.8" height="12.8">{{$directory}}</a>
         @endforeach
       </div>
-    </div>
 
     <div id="page-content-wrapper">
     <button class="btn btn-primary" id="menu-toggle">dossiers</button>
@@ -30,4 +26,5 @@
     </div>
 </div>
 <script src="{{asset('js/button-folder.js')}}"></script>
+<script src="js/app.js"></script>
 @stop

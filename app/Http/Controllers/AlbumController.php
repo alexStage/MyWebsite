@@ -173,4 +173,19 @@ class AlbumController extends Controller
 
         return redirect(route('albums.index'));
     }
+
+    public function jscomment(Request $request){
+        request()->validate([
+            'content' => ['required'],
+        ]);
+
+        Comment::create([
+            'user_id' => Auth::user()->id,
+            'album_id' => 1,
+            'content' => $request->content,
+        ]);
+
+        return "Votre commentaire a bien été ajouté";
+
+    }
 }
