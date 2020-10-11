@@ -31,7 +31,7 @@
                         </li>
                         @if(Auth::user()->isFamily())
                             <li class="nav-item active">
-                                <a class="nav-link" target="_self" href="{{route('archives.index')}}">Archives</a>
+                                <a class="nav-link" target="_self" href="{{route('archives')}}">Archives</a>
                             </li>
                         @endif
                     @endauth
@@ -103,5 +103,6 @@
                 $("#wrapper").toggleClass("toggled");
             });
         </script>
+        <script src="{{asset('js/button-folder.js')}}"></script>
     </body>
 </html>

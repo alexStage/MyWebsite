@@ -25,6 +25,7 @@
         "vuedraggable": "^2.24.1"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.1",
         "vue": "^2.6.12"
     }
 }

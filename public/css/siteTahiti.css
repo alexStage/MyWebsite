@@ -8,11 +8,17 @@
     top: 0;
     left: 0;
     z-index: 1;
-  }
+}
 
-  #brand {
-        display: flex;
-        justify-content: center;
-  }
+#brand {
+    display: flex;
+    justify-content: center;
+}
 
+.sticky-bot{
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+}
   

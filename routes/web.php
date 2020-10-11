@@ -29,8 +29,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function(){
-	Route::get('', 'ArchiveController@index')->name('archives.index');
-	Route::get('/{directory}', 'ArchiveController@showDirectory')->name('archives.showDirectory')->where('directory', '(.*)');
+	Route::get('/{directory?}', 'ArchiveController@index')->name('archives')->where('directory', '(.*)');
+	Route::get('/listDirectories/{directory?}', 'ArchiveController@listDirectories')->where('directory', '(.*)');
 });
 
 
@@ -39,5 +39,6 @@ Route::get('/vues', function(){
 	return view('vues.show');
 });
 
-Route::get('/directories', 'ArchiveController@getDirectories');
-Route::get('/subDirectories/{directory}', 'ArchiveController@getSubDirectories');
+Route::get('/directories/{directory?}', 'ArchiveController@getDirectories')->where('directory', '(.*)');
+Route::get('/paginations/{directory?}/{page?}', 'ArchiveController@getPagination');
+

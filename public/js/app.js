@@ -1918,26 +1918,119 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['dataDirectories', 'dataFiles'],
   data: function data() {
     return {
-      directories: []
+      files: [],
+      list: [],
+      previousDir: '/',
+      currentDir: '/',
+      précédents: [""],
+      nextPage: "2",
+      lastPage: null,
+      currentPage: 1
     };
   },
   created: function created() {
     var _this = this;
 
-    axios.get('/directories').then(function (response) {
-      return _this.directories = response.data;
+    axios.get("/directories").then(function (result) {
+      _this.files = result.data.files.data;
+      _this.list = result.data.directories;
+      var last = result.data.files.last_page_url;
+      _this.lastPage = last.charAt(last.length - 1);
     });
   },
   methods: {
     getSubDirectories: function getSubDirectories(directory) {
+      this.getDirectories(directory);
+      this.précédents.push(this.currentDir);
+      this.previousDir = this.précédents[this.précédents.length - 2];
+    },
+    getPreviousDirectories: function getPreviousDirectories(directory) {
+      this.getDirectories(directory);
+      this.précédents.pop();
+      this.previousDir = this.précédents[this.précédents.length - 2];
+    },
+    getDirectories: function getDirectories(directory) {
       var _this2 = this;
 
-      axios.get("/subDirectories/".concat(directory)).then(console.log(function (response) {
-        return _this2.directories = response.data;
-      }));
+      if (typeof directory == 'undefined') {
+        directory = this.dataDirectories[0];
+      }
+
+      axios.get("directories/".concat(directory)).then(function (result) {
+        _this2.previousDirectory = directory;
+        _this2.files = result.data.files.data;
+        _this2.list = result.data.directories;
+        var last = result.data.files.last_page_url;
+        _this2.lastPage = last.charAt(last.length - 1);
+      });
+
+      if (typeof directory.indexOf("/") !== 'undefined') {
+        var folders = directory.split("/");
+
+        if (typeof folders[folders.length - 1] !== 'undefined') {
+          this.currentDir = folders[folders.length - 1];
+        }
+      }
+
+      this.currentPage = 1;
+    },
+    getNextPage: function getNextPage() {
+      var _this3 = this;
+
+      var directory = this.currentDir;
+      var page = this.currentPage + 1;
+      console.log(page);
+      axios.get("paginations/".concat(directory, "/").concat(page)).then(function (result) {
+        _this3.previousDirectory = directory;
+        _this3.files = result.data.files.data;
+        _this3.list = result.data.directories;
+        _this3.nextPage = result.data.files.next_page_url;
+      });
+      console.log(this.currentPage);
+      this.currentPage++;
+      console.log(this.currentPage);
+    },
+    getPreviousPage: function getPreviousPage() {
+      var _this4 = this;
+
+      var directory = this.currentDir;
+      var page = this.currentPage - 1;
+      axios.get("paginations/".concat(directory, "/").concat(page)).then(function (result) {
+        _this4.previousDirectory = directory;
+        _this4.files = result.data.files.data;
+        _this4.list = result.data.directories;
+        _this4.nextPage = result.data.files.next_page_url;
+      });
+      console.log(this.currentPage);
+      this.currentPage--;
+      console.log(this.currentPage);
     }
   }
 });
@@ -37611,38 +37704,141 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "bg-light border-right", attrs: { id: "sidebar-wrapper" } },
-    [
-      _c("div", { staticClass: "sidebar-heading" }, [_vm._v("dossiers")]),
-      _vm._v(" "),
-      _vm._l(_vm.directories, function(directory) {
-        return _c(
+  return _c("div", { staticClass: "d-flex", attrs: { id: "wrapper" } }, [
+    _c(
+      "div",
+      {
+        staticClass: "bg-light border-right",
+        attrs: { id: "sidebar-wrapper" }
+      },
+      [
+        _c("div", { staticClass: "sidebar-heading" }, [_vm._v("dossiers")]),
+        _vm._v(" "),
+        _c(
           "div",
           {
             staticClass: "list-group list-group-flush sticky",
             attrs: { id: "folder-list" }
           },
           [
+            _vm.précédents.length != 1
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "list-group-item list-group-item-action bg-blue",
+                    on: {
+                      click: function($event) {
+                        return _vm.getPreviousDirectories(_vm.previousDir)
+                      }
+                    }
+                  },
+                  [_vm._v("Précédent")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(_vm.list, function(directory) {
+              return _c(
+                "button",
+                {
+                  staticClass:
+                    "list-group-item list-group-item-action bg-light",
+                  on: {
+                    click: function($event) {
+                      return _vm.getSubDirectories(directory)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(directory))]
+              )
+            })
+          ],
+          2
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "page-content-wrapper" } }, [
+      _c("div", { staticClass: "container-fluid text-center" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.files, function(file) {
+            return _c("div", { staticClass: "col-md-4" }, [
+              _c("div", { staticClass: "card mb-4 box-shadow" }, [
+                _c("a", { attrs: { href: "" + file } }, [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: { src: "" + file }
+                  })
+                ])
+              ])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation" } }, [
+        _c(
+          "ul",
+          { staticClass: "pagination justify-content-center fixed-bottom" },
+          [
             _c(
               "button",
               {
-                staticClass: "list-group-item list-group-item-action bg-light",
-                on: {
-                  click: function($event) {
-                    return _vm.getSubDirectories(directory)
-                  }
-                }
+                staticClass: "btn btn-primary mr-100",
+                attrs: { id: "menu-toggle" }
               },
-              [_vm._v(_vm._s(directory))]
-            )
+              [_vm._v("dossiers")]
+            ),
+            _vm._v(" "),
+            _vm.currentPage != _vm.lastPage
+              ? _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.getNextPage()
+                        }
+                      }
+                    },
+                    [_vm._v("Suivant")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("a", { staticClass: "page-link" }, [
+                _vm._v(_vm._s(_vm.currentPage) + "/" + _vm._s(_vm.lastPage))
+              ])
+            ]),
+            _vm._v(" "),
+            _vm.currentPage != 1
+              ? _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.getPreviousPage()
+                        }
+                      }
+                    },
+                    [_vm._v("Précédent")]
+                  )
+                ])
+              : _vm._e()
           ]
         )
-      })
-    ],
-    2
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
