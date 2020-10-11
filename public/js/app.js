@@ -1941,6 +1941,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['dataDirectories', 'dataFiles'],
   data: function data() {
@@ -2004,6 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
     getNextPage: function getNextPage() {
       var _this3 = this;
 
+      this.files = [];
       var directory = this.currentDir;
       var page = this.currentPage + 1;
       console.log(page);
@@ -2013,13 +2032,12 @@ __webpack_require__.r(__webpack_exports__);
         _this3.list = result.data.directories;
         _this3.nextPage = result.data.files.next_page_url;
       });
-      console.log(this.currentPage);
       this.currentPage++;
-      console.log(this.currentPage);
     },
     getPreviousPage: function getPreviousPage() {
       var _this4 = this;
 
+      this.files = [];
       var directory = this.currentDir;
       var page = this.currentPage - 1;
       axios.get("paginations/".concat(directory, "/").concat(page)).then(function (result) {
@@ -2028,9 +2046,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.list = result.data.directories;
         _this4.nextPage = result.data.files.next_page_url;
       });
-      console.log(this.currentPage);
       this.currentPage--;
-      console.log(this.currentPage);
     }
   }
 });
@@ -37793,36 +37809,13 @@ var render = function() {
               [_vm._v("dossiers")]
             ),
             _vm._v(" "),
-            _vm.currentPage != _vm.lastPage
-              ? _c("li", { staticClass: "page-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.getNextPage()
-                        }
-                      }
-                    },
-                    [_vm._v("Suivant")]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("li", { staticClass: "page-item disabled" }, [
-              _c("a", { staticClass: "page-link" }, [
-                _vm._v(_vm._s(_vm.currentPage) + "/" + _vm._s(_vm.lastPage))
-              ])
-            ]),
-            _vm._v(" "),
             _vm.currentPage != 1
               ? _c("li", { staticClass: "page-item" }, [
                   _c(
                     "a",
                     {
                       staticClass: "page-link",
+                      attrs: { "aria-label": "Previous" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -37830,10 +37823,101 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Précédent")]
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("«")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sr-only" }, [
+                        _vm._v("Précédent")
+                      ]),
+                      _vm._v("Précédent")
+                    ]
                   )
                 ])
-              : _vm._e()
+              : _c("li", { staticClass: "page-item disabled" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { "aria-label": "Previous" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.getPreviousPage()
+                        }
+                      }
+                    },
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("«")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sr-only" }, [
+                        _vm._v("Précédent")
+                      ]),
+                      _vm._v("Précédent")
+                    ]
+                  )
+                ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("a", { staticClass: "page-link" }, [
+                _vm._v(_vm._s(_vm.currentPage) + "/" + _vm._s(_vm.lastPage))
+              ])
+            ]),
+            _vm._v(" "),
+            _vm.currentPage != _vm.lastPage
+              ? _c("li", { staticClass: "page-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { "aria-label": "Next" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.getNextPage()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("Suivant\r\n                    "),
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("»")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sr-only" }, [
+                        _vm._v("Suivant")
+                      ])
+                    ]
+                  )
+                ])
+              : _c("li", { staticClass: "page-item disabled" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { "aria-label": "Next" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.getNextPage()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v("Suivant\r\n                    "),
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("»")
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "sr-only" }, [
+                        _vm._v("Suivant")
+                      ])
+                    ]
+                  )
+                ])
           ]
         )
       ])

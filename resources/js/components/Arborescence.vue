@@ -22,9 +22,27 @@
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center fixed-bottom">
                 <button class="btn btn-primary mr-100" id="menu-toggle">dossiers</button>
-                <li class="page-item" v-if="currentPage != 1"><a class="page-link" @click.prevent="getPreviousPage()">Précédent</a></li>
+                <li class="page-item" v-if="currentPage != 1">
+                    <a class="page-link" aria-label="Previous" @click.prevent="getPreviousPage()">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Précédent</span>Précédent</a>
+                </li>
+                <li class="page-item disabled" v-else>
+                    <a class="page-link" aria-label="Previous" @click.prevent="getPreviousPage()">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Précédent</span>Précédent</a>
+                </li>
                 <li class="page-item disabled"><a class="page-link">{{currentPage}}/{{lastPage}}</a></li>
-                <li class="page-item" v-if="currentPage != lastPage"><a class="page-link" @click.prevent="getNextPage()">Suivant</a></li>
+                <li class="page-item" v-if="currentPage != lastPage">
+                    <a class="page-link" aria-label="Next" @click.prevent="getNextPage()">Suivant
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Suivant</span></a>   
+                </li>
+                <li class="page-item disabled" v-else>
+                    <a class="page-link" aria-label="Next" @click.prevent="getNextPage()">Suivant
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Suivant</span></a>   
+                </li>
             </ul>
         </nav>
     </div>

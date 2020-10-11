@@ -57,7 +57,7 @@ class ArchiveController extends Controller
             $files[$i] = "archive/".$files[$i];
         }
         $collection = collect($files);
-        $perPage = 20;
+        $perPage = 15;
 
         $files = new LengthAwarePaginator(
             $collection->forPage(1, $perPage),
@@ -81,7 +81,7 @@ class ArchiveController extends Controller
             $files[$i] = "archive/".$files[$i];
         }
         $collection = collect($files);
-        $perPage = 20;
+        $perPage = 15;
 
         $files = new LengthAwarePaginator(
             $collection->forPage($page, $perPage),
