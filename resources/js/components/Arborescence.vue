@@ -22,9 +22,9 @@
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center fixed-bottom">
                 <button class="btn btn-primary mr-100" id="menu-toggle">dossiers</button>
-                <li class="page-item" v-if="currentPage != lastPage"><a class="page-link" @click.prevent="getNextPage()">Suivant</a></li>
-                <li class="page-item disabled"><a class="page-link">{{currentPage}}/{{lastPage}}</a></li>
                 <li class="page-item" v-if="currentPage != 1"><a class="page-link" @click.prevent="getPreviousPage()">Précédent</a></li>
+                <li class="page-item disabled"><a class="page-link">{{currentPage}}/{{lastPage}}</a></li>
+                <li class="page-item" v-if="currentPage != lastPage"><a class="page-link" @click.prevent="getNextPage()">Suivant</a></li>
             </ul>
         </nav>
     </div>
@@ -91,6 +91,7 @@ export default {
         },
 
         getNextPage(){
+            this.files = [];
             var directory = this.currentDir;
             var page = this.currentPage+1;
             console.log(page);
@@ -100,12 +101,11 @@ export default {
                 this.list = result.data.directories;
                 this.nextPage = result.data.files.next_page_url;
             });
-            console.log(this.currentPage);
             this.currentPage++;
-            console.log(this.currentPage);
         },
 
         getPreviousPage(){
+            this.files = [];
             var directory = this.currentDir;
             var page = this.currentPage-1;
             axios.get(`paginations/${directory}/${page}`).then((result) => {
@@ -114,9 +114,7 @@ export default {
                 this.list = result.data.directories;
                 this.nextPage = result.data.files.next_page_url;
             });
-            console.log(this.currentPage);
             this.currentPage--;
-            console.log(this.currentPage);
         },
 
     }
