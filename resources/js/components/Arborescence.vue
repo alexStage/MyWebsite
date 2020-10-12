@@ -86,6 +86,7 @@ export default {
                 .then(response => {
                     this.laravelData = response.data.files;
                 });
+                jQuery('html, body').animate({scrollTop: 0}, 500);
         }
 
     }

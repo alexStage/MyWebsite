@@ -2001,6 +2001,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("paginations?directory=".concat(directory, "&page=").concat(page)).then(function (response) {
         _this3.laravelData = response.data.files;
       });
+      jQuery('html, body').animate({
+        scrollTop: 0
+      }, 500);
     }
   }
 });
