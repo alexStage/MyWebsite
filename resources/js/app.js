@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('comment-form', require('./components/CommentForm.vue').default);
 Vue.component('arborescence', require('./components/Arborescence.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
