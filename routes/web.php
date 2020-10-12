@@ -40,5 +40,5 @@ Route::get('/vues', function(){
 });
 
 Route::get('/directories/{directory?}', 'ArchiveController@getDirectories')->where('directory', '(.*)');
-Route::get('/paginations/{directory?}/{page?}', 'ArchiveController@getPagination');
+Route::get('/paginations', 'ArchiveController@getPagination');
 

@@ -2028,7 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
       this.files = [];
       var directory = this.path;
       var page = this.currentPage + 1;
-      axios.get("paginations/".concat(directory, "/").concat(page)).then(function (result) {
+      axios.get("paginations?directory=".concat(directory, "&page=").concat(page)).then(function (result) {
         _this3.previousDirectory = directory;
         _this3.files = result.data.files.data;
         _this3.list = result.data.directories;
@@ -2042,7 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
       this.files = [];
       var directory = this.path;
       var page = this.currentPage - 1;
-      axios.get("paginations/".concat(directory, "/").concat(page)).then(function (result) {
+      axios.get("paginations?directory=".concat(directory, "&page=").concat(page)).then(function (result) {
         _this4.previousDirectory = directory;
         _this4.files = result.data.files.data;
         _this4.list = result.data.directories;

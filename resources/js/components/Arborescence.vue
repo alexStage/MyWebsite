@@ -114,7 +114,7 @@ export default {
             this.files = [];
             var directory = this.path;
             var page = this.currentPage+1;
-            axios.get(`paginations/${directory}/${page}`).then((result) => {
+            axios.get(`paginations?directory=${directory}&page=${page}`).then((result) => {
                 this.previousDirectory = directory;
                 this.files = result.data.files.data;
                 this.list = result.data.directories;
@@ -127,7 +127,7 @@ export default {
             this.files = [];
             var directory = this.path;
             var page = this.currentPage-1;
-            axios.get(`paginations/${directory}/${page}`).then((result) => {
+            axios.get(`paginations?directory=${directory}&page=${page}`).then((result) => {
                 this.previousDirectory = directory;
                 this.files = result.data.files.data;
                 this.list = result.data.directories;
