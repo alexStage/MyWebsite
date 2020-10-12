@@ -7,7 +7,7 @@
             <button v-for="directory in list" class="list-group-item list-group-item-action bg-light" @click="getSubDirectories(directory)">{{directory}}</button>
         </div>
     </div>
-    
+
     <div id="page-content-wrapper">
         <div class="container-fluid text-center">
             <div class="row">
@@ -62,6 +62,7 @@ export default {
             nextPage: "2",
             lastPage:null,
             currentPage: 1,
+            path: '',
         }
     },
     created(){
@@ -87,6 +88,7 @@ export default {
         },
 
         getDirectories(directory){
+            this.path = directory;
             if(typeof(directory) == 'undefined'){
                 directory = this.dataDirectories[0];
             }
@@ -110,9 +112,8 @@ export default {
 
         getNextPage(){
             this.files = [];
-            var directory = this.currentDir;
+            var directory = this.path;
             var page = this.currentPage+1;
-            console.log(page);
             axios.get(`paginations/${directory}/${page}`).then((result) => {
                 this.previousDirectory = directory;
                 this.files = result.data.files.data;
@@ -124,7 +125,7 @@ export default {
 
         getPreviousPage(){
             this.files = [];
-            var directory = this.currentDir;
+            var directory = this.path;
             var page = this.currentPage-1;
             axios.get(`paginations/${directory}/${page}`).then((result) => {
                 this.previousDirectory = directory;

@@ -1970,7 +1970,8 @@ __webpack_require__.r(__webpack_exports__);
       précédents: [""],
       nextPage: "2",
       lastPage: null,
-      currentPage: 1
+      currentPage: 1,
+      path: ''
     };
   },
   created: function created() {
@@ -1996,6 +1997,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDirectories: function getDirectories(directory) {
       var _this2 = this;
+
+      this.path = directory;
 
       if (typeof directory == 'undefined') {
         directory = this.dataDirectories[0];
@@ -2023,9 +2026,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.files = [];
-      var directory = this.currentDir;
+      var directory = this.path;
       var page = this.currentPage + 1;
-      console.log(page);
       axios.get("paginations/".concat(directory, "/").concat(page)).then(function (result) {
         _this3.previousDirectory = directory;
         _this3.files = result.data.files.data;
@@ -2038,7 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.files = [];
-      var directory = this.currentDir;
+      var directory = this.path;
       var page = this.currentPage - 1;
       axios.get("paginations/".concat(directory, "/").concat(page)).then(function (result) {
         _this4.previousDirectory = directory;
