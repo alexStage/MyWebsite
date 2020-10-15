@@ -2107,7 +2107,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38582,32 +38581,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "div",
-        {
-          staticClass: "btn-group justify-content-center sticky display-inline"
-        },
-        [
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { id: "menu-toggle" } },
-            [_vm._v("dossiers")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary",
-              on: {
-                click: function($event) {
-                  _vm.creation = !_vm.creation
-                }
-              }
-            },
-            [_vm._v("créer un album")]
-          )
-        ]
-      ),
+      _vm._m(0),
       _vm._v(" "),
       _vm.dataFiles != null
         ? _c("div", { attrs: { id: "page-content-wrapper" } }, [
@@ -38617,16 +38591,14 @@ var render = function() {
                 { staticClass: "row" },
                 _vm._l(_vm.dataFiles.data, function(file) {
                   return _c("div", { staticClass: "col-md-4" }, [
-                    _vm.creation
-                      ? _c("div", { staticClass: "card mb-4 box-shadow" }, [
-                          _c("a", { attrs: { href: "" + file } }, [
-                            _c("img", {
-                              staticClass: "card-img-top",
-                              attrs: { src: "" + file }
-                            })
-                          ])
-                        ])
-                      : _vm._e()
+                    _c("div", { staticClass: "card mb-4 box-shadow" }, [
+                      _c("a", { attrs: { href: "" + file } }, [
+                        _c("img", {
+                          staticClass: "card-img-top",
+                          attrs: { src: "" + file }
+                        })
+                      ])
+                    ])
                   ])
                 }),
                 0
@@ -38658,7 +38630,24 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "btn-group justify-content-center sticky display-inline" },
+      [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { id: "menu-toggle" } },
+          [_vm._v("dossiers")]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 

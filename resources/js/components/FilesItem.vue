@@ -2,14 +2,13 @@
     <div>
         <div class="btn-group justify-content-center sticky display-inline">
             <button class="btn btn-primary" id="menu-toggle">dossiers</button>
-            <button class="btn btn-primary" @click="creation = !creation">créer un album</button>
         </div>
         
         <div id="page-content-wrapper" v-if="dataFiles!=null">
             <div class="container-fluid text-center">
                 <div class="row">
                         <div class="col-md-4" v-for="file in dataFiles.data">
-                            <div v-if="creation" class="card mb-4 box-shadow">
+                            <div class="card mb-4 box-shadow">
                                 <a :href="`${file}`"><img class="card-img-top" :src="`${file}`"/></a>
                             </div>
                         </div>
