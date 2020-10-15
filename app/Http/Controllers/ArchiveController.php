@@ -71,13 +71,8 @@ class ArchiveController extends Controller
     public function getPagination(){
         $directory = request('directory');
         $page = request('page');
-        $directories = Storage::disk('archives')->Directories();
-        if($directory == null){
-            $files = Storage::disk('archives')->files($directories[0]);
-        }else{
-            $files = Storage::disk('archives')->files($directory);
-            $directories = Storage::disk('archives')->directories($directory);
-        }
+        $files = Storage::disk('archives')->files($directory);
+        $directories = Storage::disk('archives')->directories($directory);
 
         for($i=0; $i<=count($files)-1; $i++){
             $files[$i] = "archive/".$files[$i];

@@ -1,5 +1,6 @@
 <template>
 <div class="d-flex" id="wrapper">
+
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">dossiers</div>
         <div id="folder-list" class="list-group list-group-flush sticky">
@@ -7,46 +8,30 @@
             <button v-for="directory in list" class="list-group-item list-group-item-action bg-light" @click="getSubDirectories(directory)">{{directory}}</button>
         </div>
     </div>
-    <button class="btn btn-primary" id="menu-toggle">dossiers</button>
-    <div id="page-content-wrapper">
-        <div class="container-fluid text-center">
-            <div class="row">
-                    <div class="col-md-4" v-for="file in laravelData.data">
-                        <div class="card mb-4 box-shadow">
-                            <a :href="`${file}`"><img class="card-img-top" :src="`${file}`"/></a>
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div>
-    
-    <pagination v-if="laravelData!=null" class="fixed-bottom justify-content-center" :data="laravelData" :limit="1" :show-disabled="true" @pagination-change-page="getResults">
-        <span slot="prev-nav">&lt; Précédent</span>
-        <span slot="next-nav">Suivant &gt;</span>
-    </pagination>
+    <files-item v-bind:data-files="laravelData" v-bind:data-path="path" @listFiles="laravelData = $event"></files-item>
 </div>
 </template>
 
 <script>
+import FilesItem from './FilesItem.vue'
 export default {
-    props: ['dataDirectories', 'dataFiles'],
+    components:{ FilesItem },
+    props: ['dataDirectories'],
     data(){
         return{
             list: [],
             previousDir: '/',
             currentDir: '/',
             précédents:[""],
-            path: '',
-            laravelData: {},
+            path: '/',
+            laravelData: null,
         }
     },
     mounted(){
         axios.get(`/directories`).then((result) => {
             this.laravelData = result.data.files;
             this.list = result.data.directories;
-            var last = result.data.files.last_page_url;
         });
-
     },
     methods:{
         getSubDirectories(directory){
@@ -70,7 +55,6 @@ export default {
                 this.previousDirectory = directory;
                 this.laravelData = result.data.files;
                 this.list = result.data.directories;
-                var last = result.data.files.last_page_url;
             });
             
             if(typeof directory.indexOf("/")!=='undefined'){
@@ -79,14 +63,6 @@ export default {
                     this.currentDir = folders[folders.length-1];
                 }
             }
-        },
-        getResults(page = 1) {
-            var directory = this.path;
-            axios.get(`paginations?directory=${directory}&page=${page}`)
-                .then(response => {
-                    this.laravelData = response.data.files;
-                });
-                jQuery('html, body').animate({scrollTop: 0}, 500);
         }
 
     }
