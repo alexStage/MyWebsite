@@ -69,7 +69,11 @@
                         <a class="dropdown-item" href="{{route('profile.photo')}}">
                             {{ __('ajouter photo de profile') }}
                         </a>
-
+                        @if(Auth::user()->isAdmin())
+                        <a class="dropdown-item" target="_self" href="{{route('admin.users')}}">
+                            {{ __('Admin') }}
+                        </a>
+                        @endif
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -96,5 +100,14 @@
 
         <script type="text/javascript" src="{{url('js/popper.min.js')}}"></script>        
         <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>
+        <script>
+        $(document).ready(function() {
+            // Send refresh second time to avoid display errors
+            if (window.location.href.indexOf('?refresh') != -1) {
+            window.location.href = window.location.href.replace('?refresh', '');
+            return;
+            }
+            });
+        </script>
     </body>
 </html>

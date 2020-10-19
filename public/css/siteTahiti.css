@@ -20,4 +20,24 @@
     bottom: 0;
     z-index: 1;
 }
+
+#albumBand{
+    overflow: scroll;
+    width: 100%;
+    height: 120px;
+    border: solid;
+    position: -webkit-sticky;
+    position: sticky;
+    top:40px;
+    z-index: 1;
+}
+
+.imgBand{
+    float:left;
+}
+
+#fileButtons{
+    width: 100%;
+    text-align: center;
+}
   

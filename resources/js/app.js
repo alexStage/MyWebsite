@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('comment-form', require('./components/CommentForm.vue').default);
 Vue.component('directories-item', require('./components/Directories.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
+Vue.component('users-list', require('./components/UsersList.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -188,4 +188,29 @@ class AlbumController extends Controller
         return "Votre commentaire a bien été ajouté";
 
     }
+
+    public function createAlbum(Request $request){
+        request()->validate([
+            'content' => ['required'],
+            'title' => ['required'],
+            'img' => ['required']
+        ]);
+
+        $album = Album::create([
+            'title'=> $request->title,
+            'content'=>$request->content,
+            'user_id'=> Auth::user()->id,
+        ]);
+
+        foreach($request->img as $file){
+            Photo::create([
+                'name' => $file,
+                'album_id' =>$album->id,
+            ]);
+        }
+        
+        Session::flash('success', 'Votre album a bien été créé');
+        return redirect('/');
+
+    }
 }

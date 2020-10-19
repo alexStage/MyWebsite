@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'Family' => \App\Http\Middleware\IsFamily::class,
+        'Admin' => \App\Http\Middleware\Admin::class,
         'optimizeImages' => \Spatie\LaravelImageOptimizer\Middlewares\OptimizeImages::class,
     ];
 }
