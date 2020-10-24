@@ -13,7 +13,7 @@ class CreateEtiquettesPhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('etiquettes-photos', function (Blueprint $table) {
+        Schema::create('etiquette_photo', function (Blueprint $table) {
             $table->bigIncrements('id');
         });
     }
@@ -25,6 +25,6 @@ class CreateEtiquettesPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('etiquettes-photos');
+        Schema::dropIfExists('etiquette_photo');
     }
 }

@@ -70,7 +70,7 @@
                             {{ __('ajouter photo de profile') }}
                         </a>
                         @if(Auth::user()->isAdmin())
-                        <a class="dropdown-item" target="_self" href="{{route('admin.users')}}">
+                        <a class="dropdown-item" target="_self" href="{{route('admin')}}">
                             {{ __('Admin') }}
                         </a>
                         @endif
@@ -94,6 +94,15 @@
             <div class="alert alert-warning" role="alert">
                 {{session('warning')}}
             </div>
+            @endif
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <p>{{$error}}</p>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             @yield('content')
             

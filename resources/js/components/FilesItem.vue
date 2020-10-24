@@ -6,7 +6,7 @@
             <button class="btn btn-success" data-toggle="modal" data-target="#albumForm" v-if="creation && listImg.length!=0">Publier</button>
         </div>
 
-        <div v-if="creation" id="albumBand" class="bg-blue">
+        <div v-if="creation" id="albumBand" class="bg-blue band">
             <div v-for="file in listImg">
                 <img class ="imgBand" @click="unSelectImg(file)" height="100" width="100" :src="`${file}`"/>
             </div>

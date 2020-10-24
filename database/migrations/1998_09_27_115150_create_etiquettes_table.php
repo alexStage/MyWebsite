@@ -19,11 +19,11 @@ class CreateEtiquettesTable extends Migration
             $table->text('name');
         });
 
-        Schema::table('etiquettes-photos', function(Blueprint $table){
+        Schema::table('etiquette_photo', function(Blueprint $table){
             $table->integer('etiquette_id')->unsigned()->index()->nullable();
         });
 
-        Schema::table('etiquettes-albums', function(Blueprint $table){
+        Schema::table('etiquette_album', function(Blueprint $table){
             $table->integer('etiquette_id')->unsigned()->index()->nullable();
         });
     }

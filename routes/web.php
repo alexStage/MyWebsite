@@ -35,7 +35,11 @@ Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function
 });
 
 Route::group(['prefix'=> 'admin', 'middleware'=>['Admin']], function(){
-	Route::get('/users', 'UserController@index')->name('admin.users');
+	Route::get('/', 'AdminController@index')->name('admin');
+	Route::get('/users', 'AdminController@adminUsers')->name('admin.users');
+	Route::get('/photos', 'AdminController@adminPhotos')->name('admin.photos');
+	Route::post('/photos/etiquettes', 'AdminController@adminEtiquette')->name('admin.etiquettes');
+	Route::post('/etiquettes', 'EtiquetteController@create')->name('create.etiquette');
 });
 
 

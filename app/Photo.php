@@ -10,6 +10,8 @@ class Photo extends Model
 {
     protected $fillable = ['name','album_id', 'user_id'];
 
+    protected $with = ['etiquettes'];
+
     public function album(){
     	return $this->belongsTo('App\Album');
     }

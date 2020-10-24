@@ -41,7 +41,7 @@
           </div>
           @endforeach
         </div>
-	     <div class="col-sm-9">
+	     <div class="col">
         <div class="album py-5 bg-light">
           <div class="container">
             <div class="row">
