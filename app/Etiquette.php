@@ -9,7 +9,7 @@ class Etiquette extends Model
     protected $fillable = ['name'];
 
     public function photos(){
-        return $this->belongToMany('App\Photo');
+        return $this->belongsToMany('App\Photo');
     }
 
     public function albums(){

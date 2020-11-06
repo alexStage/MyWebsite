@@ -1,6 +1,5 @@
 <template>
 <div class="d-flex" id="wrapper">
-
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">dossiers</div>
         <div id="folder-list" class="list-group list-group-flush sticky">

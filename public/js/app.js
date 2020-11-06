@@ -2168,7 +2168,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38534,7 +38533,7 @@ var render = function() {
         return _c("div", [
           _c("img", {
             staticClass: "imgBand",
-            attrs: { height: "100", width: "100", src: "" + photo.name },
+            attrs: { height: "100", width: "100", src: "" + photo.slug },
             on: {
               click: function($event) {
                 return _vm.selectImg(photo)
@@ -38556,7 +38555,7 @@ var render = function() {
                 _c("img", {
                   staticClass: "card-img-top",
                   attrs: {
-                    src: "" + _vm.selected.name,
+                    src: "" + _vm.selected.slug,
                     alt: "" + _vm.selected.name
                   }
                 }),

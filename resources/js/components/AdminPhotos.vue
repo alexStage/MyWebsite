@@ -2,13 +2,13 @@
     <div class="container-fluid text-center">
         <div class="bg-blue band">
             <div v-for="photo in photos">
-                <img class ="imgBand" @click="selectImg(photo)" height="100" width="100" :src="`${photo.name}`"/>
+                <img class ="imgBand" @click="selectImg(photo)" height="100" width="100" :src="`${photo.slug}`"/>
             </div>
         </div>
             <div class="row">
                 <div class="col border-right justify-content-center">
                     <div v-if="selected!=null" class="card" style="width: 25rem;">
-                        <img class="card-img-top" :src="`${selected.name}`" :alt="`${selected.name}`">
+                        <img class="card-img-top" :src="`${selected.slug}`" :alt="`${selected.name}`">
                         <div class="card-body">
                         <p class="card-text">
                             <a href="" @click.prevent="supprEtiquette(etiquette)" v-for="etiquette in selected.etiquettes" class="badge badge-pill badge-info">{{etiquette.name}}</a>

@@ -6,6 +6,8 @@ use App\Photo;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
+use Storage;
+use Illuminate\Support\Facades\DB;
 
 class PhotoController extends Controller
 {
@@ -66,7 +68,26 @@ class PhotoController extends Controller
         }else{
             echo '<div class="alert alert-warning"><strong>Warning!</strong> Sorry Only Upload png , jpg , doc</div>';
 
+        }
     }
+
+    public function majTablePhoto(){
+        $files = Storage::disk('archives')->allFiles();
+        DB::table('photos')->delete();
+        foreach($files as $file){
+
+            $slug = "archive/".$file;
+            $array = explode("/", $file);
+            $name = $array[count($array) - 1];
+            
+            DB::table('photos')->updateOrInsert([
+                'name'=> $name,
+                'slug'=> $slug,
+            ]);
+
+        }
+        Session::flash('success', 'Base de données mise à jour');
+        return Redirect::back();
     }
     
 

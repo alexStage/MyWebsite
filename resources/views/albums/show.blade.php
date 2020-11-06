@@ -48,7 +48,7 @@
               @foreach($album->photos as $photo)
               <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
-                  <a href="{{asset($photo->name)}}"><img class="card-img-top" src="{{asset($photo->name)}}" alt="Card image cap"></a>
+                  <a href="{{asset($photo->slug)}}"><img class="card-img-top" src="{{asset($photo->slug)}}" alt="Card image cap"></a>
                 </div>
               </div>
               @endforeach

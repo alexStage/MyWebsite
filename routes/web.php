@@ -16,7 +16,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::middleware(['auth'])->group(function () {
 	//create albums
 	Route::get('/albums','AlbumController@create')->name('albums.create');
@@ -39,6 +38,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['Admin']], function(){
 	Route::get('/users', 'AdminController@adminUsers')->name('admin.users');
 	Route::get('/photos', 'AdminController@adminPhotos')->name('admin.photos');
 	Route::post('/photos/etiquettes', 'AdminController@adminEtiquette')->name('admin.etiquettes');
+	Route::get('/majBdd', 'PhotoController@majTablePhoto')->where('directory', '(.*)')->name('MAJBDD');
 	Route::post('/etiquettes', 'EtiquetteController@create')->name('create.etiquette');
 });
 

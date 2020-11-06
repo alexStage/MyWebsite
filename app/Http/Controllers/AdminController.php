@@ -6,6 +6,7 @@ use App\Photo;
 use App\User;
 use App\Etiquette;
 use Illuminate\Http\Request;
+use Storage;
 
 class AdminController extends Controller
 {

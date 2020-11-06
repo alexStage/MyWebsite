@@ -8,12 +8,12 @@ use App\Comment;
 
 class Photo extends Model
 {
-    protected $fillable = ['name','album_id', 'user_id'];
+    protected $fillable = ['slug','name','album_id', 'user_id'];
 
     protected $with = ['etiquettes'];
 
-    public function album(){
-    	return $this->belongsTo('App\Album');
+    public function albums(){
+    	return $this->belongsToMany('App\Album');
     }
 
     public function comments(){
@@ -26,5 +26,5 @@ class Photo extends Model
 
     public function etiquettes(){
         return $this->belongsToMany('App\Etiquette');
-    }
+    } 
 }

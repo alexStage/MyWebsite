@@ -3,7 +3,7 @@ if(navbar){
 window.onscroll = function() {myFunction()};
 
   // Get the navbar
-  var navbar = document.getElementById("menu-toggle");
+  var navbar = document.getElementById("fileButtons");
   // Get the offset position of the navbar
   var sticky = navbar.offsetTop;
 
@@ -17,9 +17,6 @@ window.onscroll = function() {myFunction()};
   } 
 }
 
-$("#menu-toggle").click(function(e) {
-  e.preventDefault();
-  $("#wrapper").toggleClass("toggled");
-});
+
 
 

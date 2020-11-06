@@ -13,7 +13,7 @@ class MessagesTableSeeder extends Seeder
     {
         DB::table('messages')->insert([
             'content' => 'Message de Test ;)',
-            'user_id' => 2,
+            'user_id' => 1,
         ]);
     }
 }

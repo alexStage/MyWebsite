@@ -83,8 +83,6 @@
             </ul>
         </div>               
     </nav>
-
-
             @if(Session::has('status'))
                 <div class="alert alert-primary" role="alert">
                     {{session('status')}}
@@ -109,6 +107,7 @@
 
         <script type="text/javascript" src="{{url('js/popper.min.js')}}"></script>        
         <script type="text/javascript" src="{{url('js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('js/button-folder.js')}}"></script>
         <script>
         $(document).ready(function() {
             // Send refresh second time to avoid display errors
@@ -117,6 +116,12 @@
             return;
             }
             });
+        </script>
+        <script>
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });
         </script>
     </body>
 </html>

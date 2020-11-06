@@ -62,7 +62,6 @@ export default {
         unSelectImg(img){
             this.listImg.splice(this.listImg.indexOf(img),1)
         }
-    }
-    
+    },  
 }
 </script>

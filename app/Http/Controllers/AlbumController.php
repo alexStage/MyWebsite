@@ -154,8 +154,8 @@ class AlbumController extends Controller
     public function destroy(Album $album)
     {
         $album->delete();
-        $photos = DB::table('photos')->where('album_id', $album->id);
-        $photos->delete();
+        $photos_album = DB::table('album_photo')->where('album_id', $album->id);
+        $photos_album->delete();
         Session::flash('success', 'album supprimé');
         return redirect(route('albums.index'));
     }
@@ -203,10 +203,11 @@ class AlbumController extends Controller
         ]);
 
         foreach($request->img as $file){
-            Photo::create([
-                'name' => $file,
-                'album_id' =>$album->id,
-            ]);
+            $array = explode("/", $file);
+            $name = $array[count($array) - 1];
+            
+            $photo = Photo::where('name', '=', $name)->first();
+            $album->photos()->save($photo);
         }
         
         Session::flash('success', 'Votre album a bien été créé');
