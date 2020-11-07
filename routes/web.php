@@ -12,6 +12,9 @@ Route::resource('/photos', 'PhotoController')->only(['store','destroy','show']);
 Route::get('/profile', 'ProfileController@photo')->name('profile.photo');
 Route::post('/profile', 'ProfileController@edit')->name('profile.edit');
 
+//downloads
+Route::get('/téléchargements', 'DownloadController@index')->middleware(['auth','family'])->name('downloads');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -24,8 +27,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
 	Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
 	Route::post('/comments', 'AlbumController@jscomment');
-	//downloads
-	Route::get('/téléchargements', 'DownloadController@index')->name('downloads');
+	
 });
 
 Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function(){

@@ -11,16 +11,6 @@ class EtiquettesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('etiquettes')->insert([
-            'name' => 'paysage',
-        ]);
 
-        DB::table('etiquettes')->insert([
-            'name' => 'singapour',
-        ]);
-
-        DB::table('etiquettes')->insert([
-            'name' => 'tahiti',
-        ]);
     }
 }
