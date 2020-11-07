@@ -26,10 +26,10 @@
                         <li class="nav-item active">
                             <a class="nav-link" target="_self" href="{{route('messages.index')}}">Messages</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" target="_self" href="{{route('downloads')}}">Téléchargements</a>
-                        </li>
                         @if(Auth::user()->isFamily())
+                            <li class="nav-item active">
+                                <a class="nav-link" target="_self" href="{{route('downloads')}}">Téléchargements</a>
+                            </li>
                             <li class="nav-item active">
                                 <a class="nav-link" target="_self" href="{{route('archives')}}">Archives</a>
                             </li>
