@@ -17,7 +17,7 @@ Route::get('/téléchargements', 'DownloadController@index')->middleware(['auth'
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AlbumController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
 	//create albums

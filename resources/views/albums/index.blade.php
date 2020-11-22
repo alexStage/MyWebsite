@@ -10,7 +10,7 @@
           <h1 class="jumbotron-heading">Albums :</h1>
           <p class="lead text-muted">Albums souvenirs de voyage ;)</p>
           <p>
-            <a href="{{route('albums.create')}}" class="btn btn-primary my-2" target="_self">Créer un album</a>
+            <a href="{{route('home')}}" class="btn btn-primary my-2" target="_self">Créer un album</a>
             <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>
           </p>
         </div> -->

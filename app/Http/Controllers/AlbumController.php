@@ -157,7 +157,7 @@ class AlbumController extends Controller
         $photos_album = DB::table('album_photo')->where('album_id', $album->id);
         $photos_album->delete();
         Session::flash('success', 'album supprimé');
-        return redirect(route('albums.index'));
+        return redirect('/');
     }
 
     public function comment(Album $album, Request $request){

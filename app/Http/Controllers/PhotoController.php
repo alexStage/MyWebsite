@@ -71,23 +71,53 @@ class PhotoController extends Controller
         }
     }
 
+    // public function majTablePhoto(){
+    //     $files = Storage::disk('archives')->allFiles();
+    //     DB::table('photos')->delete();
+    //     foreach($files as $file){
+
+    //         $slug = "archive/".$file;
+    //         $array = explode("/", $file);
+    //         $name = $array[count($array) - 1];
+            
+    //         DB::table('photos')->updateOrInsert([
+    //             'name'=> $name,
+    //             'slug'=> $slug,
+    //         ]);
+
+    //     }
+    //     Session::flash('success', 'Base de données mise à jour');
+    //     return Redirect::back();
+    // }
+
     public function majTablePhoto(){
         $files = Storage::disk('archives')->allFiles();
-        DB::table('photos')->delete();
+        $photos = Photo::all();
+
+        foreach($photos as $photo){
+            $slug = $photo->slug;
+            $array = explode("/", $slug);
+            array_shift($array);
+            $name = implode("/", $array);
+            if(Storage::disk('archives')->missing($name)){
+                $photo->delete();
+            }
+        }
+
         foreach($files as $file){
 
             $slug = "archive/".$file;
             $array = explode("/", $file);
             $name = $array[count($array) - 1];
-            
+
             DB::table('photos')->updateOrInsert([
                 'name'=> $name,
                 'slug'=> $slug,
             ]);
 
         }
-        Session::flash('success', 'Base de données mise à jour');
-        return Redirect::back();
+
+        return redirect(route('admin.photos'));
     }
     
 
