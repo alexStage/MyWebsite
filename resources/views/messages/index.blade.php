@@ -48,7 +48,7 @@
               <p>{{$message->content}}</p>
               <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      @if(Auth::user()->id == $message->user->id || Auth::user()->is_admin)
+                      @if(Auth::user()->id == $message->user->id || Auth::user()->admin)
                         {{Form::open(['method'=>'DELETE', 'route'=>['messages.destroy', $message], 'target'=>'_self'])}}
                           {{Form::button('<a>Supprimer</a>', array('type' => 'submit', 'class' => 'btn btn-sm btn-outline-secondary'))}}
                         {{ Form::close() }}
