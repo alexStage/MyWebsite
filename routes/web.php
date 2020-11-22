@@ -13,7 +13,7 @@ Route::get('/profile', 'ProfileController@photo')->name('profile.photo');
 Route::post('/profile', 'ProfileController@edit')->name('profile.edit');
 
 //downloads
-Route::get('/téléchargements', 'DownloadController@index')->middleware(['auth','family'])->name('downloads');
+Route::get('/téléchargements', 'DownloadController@index')->middleware(['auth','Family'])->name('downloads');
 
 Auth::routes();
 

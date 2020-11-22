@@ -57,14 +57,14 @@ return [
 
         'downloads' => [
             'driver' => 'local',
-            'root' => storage_path('app/downloads'),
+            'root' => '/home/alex/downloads',
             'url' => env('APP_URL').'/downloads',
             'visibility' => 'public',
         ],
 
         'archives' => [
             'driver' => 'local',
-            'root' => 'D:\Images',
+            'root' => '/home/alex/Images',
             'url' => env('APP_URL').'/archive',
             'visibility' => 'public',
         ],

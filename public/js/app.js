@@ -39005,7 +39005,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.comments, function(comment) {
         return _c("div", { staticClass: "border rounded p-3" }, [
-          _vm._v("\r\n            " + _vm._s(comment.content) + "\r\n        ")
+          _vm._v("\n            " + _vm._s(comment.content) + "\n        ")
         ])
       })
     ],
@@ -52097,8 +52097,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programmation\Web\MyWebsite\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Programmation\Web\MyWebsite\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/alex/MyWebsite/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/alex/MyWebsite/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
