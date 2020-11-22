@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
 	//create albums
-	Route::get('/albums','AlbumController@create')->name('albums.create');
+	#Route::get('/albums','AlbumController@create')->name('albums.create');
 	Route::post('/albums/publish', 'AlbumController@createAlbum');
 	//comments
 	Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');

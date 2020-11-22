@@ -39,7 +39,7 @@
                     <div class="btn-group">
                       <a class="btn btn-sm btn-outline-secondary" target="_self" href="{{route('albums.show', $album)}}">Voir</a>
                       @auth
-                      @if(Auth::user()->id == $album->user->id || Auth::user()->is_admin)
+                      @if(Auth::user()->id == $album->user->id || Auth::user()->admin)
                       <a class="btn btn-sm btn-outline-secondary" target="_self" href="{{route('albums.edit', $album)}}">Modifier</a>
                       {{Form::open(['method'=>'DELETE', 'route'=>['albums.destroy', $album], 'target'=>'_self'])}}
                           {{Form::button('<a>Supprimer</a>', array('type' => 'submit', 'class' => 'btn btn-sm btn-outline-secondary'))}}
