@@ -35,9 +35,13 @@ Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function
 	Route::get('/listDirectories/{directory?}', 'ArchiveController@listDirectories')->where('directory', '(.*)');
 });
 
+
+
 Route::group(['prefix'=> 'admin', 'middleware'=>['Admin']], function(){
 	Route::get('/', 'AdminController@index')->name('admin');
 	Route::get('/users', 'AdminController@adminUsers')->name('admin.users');
+	Route::get('/getUser/{id}', 'UserController@getUser');
+	Route::get('/updateUser/{id}/{name}/{email}/{family}/{admin}', 'UserController@update');
 	Route::get('/photos', 'AdminController@adminPhotos')->name('admin.photos');
 	Route::post('/photos/etiquettes', 'AdminController@adminEtiquette')->name('admin.etiquettes');
 	Route::get('/majBdd', 'PhotoController@majTablePhoto')->where('directory', '(.*)')->name('MAJBDD');

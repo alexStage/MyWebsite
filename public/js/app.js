@@ -2018,16 +2018,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['dataUsers'],
   data: function data() {
     return {
-      users: []
+      users: [],
+      name: '',
+      email: '',
+      family: false,
+      admin: false,
+      id: null
     };
   },
   mounted: function mounted() {
     this.users = this.dataUsers;
-    console.log('ca marche !!!madafaka');
+  },
+  methods: {
+    selectUser: function selectUser(id) {
+      var _this = this;
+
+      axios.get("/admin/getUser/".concat(id)).then(function (result) {
+        _this.id = result.data.id;
+        _this.name = result.data.name;
+        _this.email = result.data.email;
+        _this.family = result.data.family;
+        _this.admin = result.data.admin;
+      });
+    },
+    submitUser: function submitUser() {
+      axios.get("/admin/updateUser/".concat(this.id, "/").concat(this.name, "/").concat(this.email, "/").concat(this.family, "/").concat(this.admin)).then(window.location.href = 'http://127.0.0.1:8000/admin/users' + '?refresh');
+    }
   }
 });
 
@@ -38724,6 +38760,162 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("form", {
+      attrs: { id: "userForm" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.submitUser()
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("table", { staticClass: "table text-center" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
+                }
+              ],
+              attrs: { type: "text", id: "name" },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email"
+                }
+              ],
+              attrs: { type: "text", id: "email" },
+              domProps: { value: _vm.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.admin,
+                  expression: "admin"
+                }
+              ],
+              attrs: {
+                type: "checkbox",
+                id: "admin",
+                name: "admin",
+                form: "userForm"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.admin)
+                  ? _vm._i(_vm.admin, null) > -1
+                  : _vm.admin
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.admin,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.admin = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.admin = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.admin = $$c
+                  }
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.family,
+                  expression: "family"
+                }
+              ],
+              attrs: {
+                type: "checkbox",
+                id: "family",
+                name: "family",
+                form: "userForm"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.family)
+                  ? _vm._i(_vm.family, null) > -1
+                  : _vm.family
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.family,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.family = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.family = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.family = $$c
+                  }
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("h1", [_vm._v("liste des utilisateurs")]),
     _vm._v(" "),
     _c("input", {
@@ -38731,22 +38923,85 @@ var render = function() {
       attrs: { id: "myInput", type: "text", placeholder: "Rechercher..." }
     }),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-hover" }, [
-      _vm._m(0),
+    _c("table", { staticClass: "table table-hover text-center" }, [
+      _vm._m(2),
       _vm._v(" "),
       _c(
         "tbody",
         { attrs: { id: "myTable" } },
         _vm._l(_vm.users, function(user) {
-          return _c("tr", { key: user.id }, [
-            _c("td", [_vm._v(_vm._s(user.name))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.email))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.admin))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.family))])
-          ])
+          return _c(
+            "tr",
+            {
+              key: user.id,
+              staticClass: "table-row",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.selectUser(user.id)
+                }
+              }
+            },
+            [
+              _c("td", [_vm._v(_vm._s(user.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(user.email))]),
+              _vm._v(" "),
+              user.admin == 1
+                ? _c("td", [
+                    _c("input", {
+                      attrs: {
+                        disabled: "disabled",
+                        type: "checkbox",
+                        id: "admin",
+                        name: "admin",
+                        checked: ""
+                      }
+                    })
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              user.admin != 1
+                ? _c("td", [
+                    _c("input", {
+                      attrs: {
+                        disabled: "disabled",
+                        type: "checkbox",
+                        id: "admin",
+                        name: "admin"
+                      }
+                    })
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              user.family == 1
+                ? _c("td", [
+                    _c("input", {
+                      attrs: {
+                        disabled: "disabled",
+                        type: "checkbox",
+                        id: "family",
+                        name: "family",
+                        checked: ""
+                      }
+                    })
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              user.family != 1
+                ? _c("td", [
+                    _c("input", {
+                      attrs: {
+                        disabled: "disabled",
+                        type: "checkbox",
+                        id: "family",
+                        name: "family"
+                      }
+                    })
+                  ])
+                : _vm._e()
+            ]
+          )
         }),
         0
       )
@@ -38754,6 +39009,34 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("nom")]),
+        _c("th", [_vm._v("email")]),
+        _c("th", [_vm._v("admin")]),
+        _c("th", [_vm._v("membre de la famille")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", form: "userForm" }
+        },
+        [_vm._v("Modifier")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
