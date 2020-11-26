@@ -61,7 +61,7 @@ export default {
         submitUser(){
             axios.get(`/admin/updateUser/${this.id}/${this.name}/${this.email}/${this.family}/${this.admin}`)
             .then(
-                window.location.href ='http://127.0.0.1:8000/admin/users/'+'?refresh'
+                window.location.href ='http://seatheworld.fr/'+'?refresh'
             )
 
             

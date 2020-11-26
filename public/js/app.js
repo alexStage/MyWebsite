@@ -2062,7 +2062,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     submitUser: function submitUser() {
-      axios.get("/admin/updateUser/".concat(this.id, "/").concat(this.name, "/").concat(this.email, "/").concat(this.family, "/").concat(this.admin)).then(window.location.href = 'http://127.0.0.1:8000/admin/users/' + '?refresh');
+      axios.get("/admin/updateUser/".concat(this.id, "/").concat(this.name, "/").concat(this.email, "/").concat(this.family, "/").concat(this.admin)).then(window.location.href = 'http://seatheworld.fr/' + '?refresh');
     }
   }
 });
