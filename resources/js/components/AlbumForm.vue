@@ -45,7 +45,7 @@ export default {
                 title: this.title,
                 content: this.content,
                 img: this.DataImg
-            }).then(window.location.href ='http://127.0.0.1:8000/'+'?refresh')
+            }).then(window.location.href ='http://seatheworld.fr/'+'?refresh')
         }              
 
     }
