@@ -1,34 +1,7 @@
 <template>
 <div class="container">
         
-        <form id="userForm" @submit.prevent="submitUser()"/>
-        <table class="table text-center">
-        <thead><tr><th>nom</th><th>email</th><th>admin</th><th>membre de la famille</th></tr></thead>
-        <tbody>
-            <tr>
-            <td><input type="text" id="name" v-model="name"></td>
-            <td><input type="text" id="email" v-model="email"></td>
-            <td><input type="checkbox" id="admin" name="admin" form="userForm" v-model="admin"></td>
-            <td><input type="checkbox" id="family" name="family" form="userForm" v-model="family"></td>
-            <td><button type="submit" class="btn btn-primary" form="userForm">Modifier</button></td>
-            </tr>
-        </tbody>
-        </table>
-        <h1>liste des utilisateurs</h1>
-        <input class="form-control" id="myInput" type="text" placeholder="Rechercher...">
-    <table class="table table-hover text-center">
-        <thead><tr><th>nom</th><th>email</th><th>admin</th><th>membre de la famille</th></tr></thead>
-        <tbody id="myTable">
-            <tr class="table-row" v-for="user in users" :key=user.id @click.prevent="selectUser(user.id)">
-                <td>{{user.name}}</td>
-                <td>{{user.email}}</td>
-                <td v-if="user.admin==1"><input disabled="disabled" type="checkbox" id="admin" name="admin" checked ></td>
-                <td v-if="user.admin!=1"><input disabled="disabled" type="checkbox" id="admin" name="admin"></td>
-                <td v-if="user.family==1"><input disabled="disabled" type="checkbox" id="family" name="family"  checked></td>
-                <td v-if="user.family!=1"><input disabled="disabled" type="checkbox" id="family" name="family"></td>
-            </tr>
-        </tbody>
-    </table>
+        <p>bite bite bite</p>
 </div>
 </template>
 <script>
