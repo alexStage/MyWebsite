@@ -8,4 +8,7 @@
     <a target="_self" href="{{ route('MAJBDD')}}"><button class="btn  btn-primary">Mettre à jour la BDD</button></a>
 </div>
 <script src="js/app.js"></script>
+
+@include('layouts/footer')
+
 @stop

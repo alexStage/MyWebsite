@@ -8,4 +8,7 @@
   <li class="list-group-item"><a href="{{route('admin.photos')}}" target="_self" >administrer les photos</a></li>
 </ul>
 </div>
+
+@include('layouts/footer')
+
 @stop

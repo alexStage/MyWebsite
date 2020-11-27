@@ -63,4 +63,6 @@
       </div>
 </main>
 
+@include('layouts/footer')
+
 @stop

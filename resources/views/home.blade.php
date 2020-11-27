@@ -79,7 +79,7 @@
     @endif
 
     
-
+    @include('layouts/footer')
 
         
 @endsection
