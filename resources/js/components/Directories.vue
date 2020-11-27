@@ -1,12 +1,30 @@
 <template>
 <div class="d-flex" id="wrapper">
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="bg-light border-right text-center" id="sidebar-wrapper">
         <div class="sidebar-heading">dossiers</div>
         <div id="folder-list" class="list-group list-group-flush sticky">
-            <button v-if="précédents.length!=1" class="list-group-item list-group-item-action bg-blue" @click="getPreviousDirectories(previousDir)">Précédent</button>
+            <button v-if="précédents.length!=1" class="btn bg-blue" @click="getPreviousDirectories(previousDir)">Précédent</button>
             <button v-for="directory in list" class="list-group-item list-group-item-action bg-light" @click="getSubDirectories(directory)">{{directory}}</button>
+            
+            </br>
+
+            <a target="_blank" class="btn sticky" rel="noreferrer" href="http://owncloud.seatheworld.fr/"
+                style="padding:10px;background-color:#1B223D;color:#fff;border-radius:3px;padding-left:4px;">
+                    <img src="http://owncloud.seatheworld.fr/core/img/logo-icon.svg" style="width:50px;position:relative;">
+                    Ajouter des photos
+            </a>
+
         </div>
+        
+        
     </div>
+    <div id="michel">
+        <button class="btn btn-info sticky float" id="menu-toggle"><span class="navbar-toggler-icon">   
+    <i  id="btnIcon" class="fas fa-angle-double-left"></i>
+</span>
+</button>
+    </div>
+    
     <files-item v-bind:data-files="laravelData" v-bind:data-path="path" @listFiles="laravelData = $event"></files-item>
 </div>
 </template>
@@ -66,4 +84,5 @@ export default {
 
     }
 }
+
 </script>

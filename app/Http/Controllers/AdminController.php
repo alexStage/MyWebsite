@@ -7,6 +7,7 @@ use App\User;
 use App\Etiquette;
 use Illuminate\Http\Request;
 use Storage;
+use App\Http\Controllers\PhotoController;
 
 class AdminController extends Controller
 {
@@ -15,9 +16,10 @@ class AdminController extends Controller
     }
 
     public function AdminPhotos(){
+        $maj = PhotoController::isUpToDate();
         $photos = Photo::all();
         $etiquettes = Etiquette::all();
-        return view('admin.photos', compact('photos', 'etiquettes'));
+        return view('admin.photos', compact('photos', 'etiquettes', 'maj'));
     }
 
     public function AdminUsers(){

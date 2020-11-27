@@ -8,6 +8,7 @@
                 Ajouter des photos
         </a>
     </div>
+    </br>
 </footer>
 @endif
 @endauth

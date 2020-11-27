@@ -119,6 +119,38 @@ class PhotoController extends Controller
 
         return redirect(route('admin.photos'));
     }
+
+    public static function isUpToDate(){
+        $files = Storage::disk('archives')->allFiles();
+        $photos = Photo::all();
+        $countMissing= 0;
+        $countToDelete= 0;
+
+        foreach($photos as $photo){
+            $slug = $photo->slug;
+            $array = explode("/", $slug);
+            array_shift($array);
+            $name = implode("/", $array);
+            if(Storage::disk('archives')->missing($name)){
+                $countToDelete +=1;
+            }
+        }
+
+        foreach($files as $file){
+            $array = explode("/", $file);
+            $name = end($array);
+            if(DB::table('photos')->where('name', $name)->doesntExist()){
+                $countMissing +=1;
+            }
+        }
+
+        $array = [
+            'missing' => $countMissing,
+            'toDelete' => $countToDelete, 
+        ];
+
+        return $array;
+    }
     
 
     /**
@@ -181,4 +213,5 @@ class PhotoController extends Controller
 
         return redirect(route('albums.index')); //changer albums.index quand j'aurai créé le photo.index
     }
+
 }

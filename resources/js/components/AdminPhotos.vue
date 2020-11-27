@@ -37,9 +37,10 @@
 </template>
 <script>
 export default {
-    props: ['DataPhotos', 'DataEtiquettes'],
+    props: ['DataMaj', 'DataPhotos', 'DataEtiquettes'],
     data(){
         return{
+            maj: this.DataMaj,
             photos: this.DataPhotos,
             allEtiquettes: this.DataEtiquettes,
             selected: null,

@@ -26,5 +26,6 @@ class Photo extends Model
 
     public function etiquettes(){
         return $this->belongsToMany('App\Etiquette');
-    } 
+    }
+
 }

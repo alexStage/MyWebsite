@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{{url('css/simple-sidebar.css')}}">
         <link rel="icon" href="{{asset('assets/seaTheWorld2.png')}}">
         <script type="text/javascript" src="{{url('js/jQuery.js')}}"></script>
+        <script src="https://kit.fontawesome.com/ef75b9cf35.js" crossorigin="anonymous"></script>
         <title>Carnet de voyages</title>
     </head>
     <body>
@@ -83,16 +84,24 @@
             </ul>
         </div>               
     </nav>
-            @if(Session::has('status'))
-                <div class="alert alert-primary" role="alert">
-                    {{session('status')}}
+            <div class="container">
+            @if(Session::has('danger'))
+                <div class="alert alert-danger text-center" role="alert">
+                    {{session('danger')}}
                 </div>
             @endif
             @if(Session::has('warning'))
-            <div class="alert alert-warning" role="alert">
-                {{session('warning')}}
-            </div>
+                <div class="alert alert-warning text-center" role="alert">
+                    {{session('warning')}}
+                </div>
             @endif
+            @if(Session::has('success'))
+                <div class="alert alert-success text-center" role="alert">
+                    {{session('success')}}
+                </div>
+            @endif
+            </div>
+
             @yield('content')
             
 
@@ -108,12 +117,12 @@
             }
             });
         </script>
-        <script>
+        <!-- <script>
         $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
         });
-        </script>
+        </script> -->
         
     </body>
 </html>

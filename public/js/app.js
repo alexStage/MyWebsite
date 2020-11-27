@@ -1946,9 +1946,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['DataPhotos', 'DataEtiquettes'],
+  props: ['DataMaj', 'DataPhotos', 'DataEtiquettes'],
   data: function data() {
     return {
+      maj: this.DataMaj,
       photos: this.DataPhotos,
       allEtiquettes: this.DataEtiquettes,
       selected: null,
@@ -2062,7 +2063,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     submitUser: function submitUser() {
-      axios.get("/admin/updateUser/".concat(this.id, "/").concat(this.name, "/").concat(this.email, "/").concat(this.family, "/").concat(this.admin)).then(window.location.href = 'http://seatheworld.fr/' + '?refresh');
+      axios.get("/admin/updateUser/".concat(this.id, "/").concat(this.name, "/").concat(this.email, "/").concat(this.family, "/").concat(this.admin))["catch"](function (error) {
+        console.log('Error: ', error);
+      }).then(window.location.href = 'http://seatheworld.fr/admin/users/' + '?refresh');
     }
   }
 });
@@ -2204,6 +2207,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2312,7 +2333,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AlbumForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AlbumForm.vue */ "./resources/js/components/AlbumForm.vue");
-//
 //
 //
 //
@@ -39324,7 +39344,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "bg-light border-right",
+          staticClass: "bg-light border-right text-center",
           attrs: { id: "sidebar-wrapper" }
         },
         [
@@ -39341,8 +39361,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
-                      staticClass:
-                        "list-group-item list-group-item-action bg-blue",
+                      staticClass: "btn bg-blue",
                       on: {
                         click: function($event) {
                           return _vm.getPreviousDirectories(_vm.previousDir)
@@ -39367,12 +39386,18 @@ var render = function() {
                   },
                   [_vm._v(_vm._s(directory))]
                 )
-              })
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm._m(0)
             ],
             2
           )
         ]
       ),
+      _vm._v(" "),
+      _vm._m(1),
       _vm._v(" "),
       _c("files-item", {
         attrs: { "data-files": _vm.laravelData, "data-path": _vm.path },
@@ -39386,7 +39411,62 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn sticky",
+        staticStyle: {
+          padding: "10px",
+          "background-color": "#1B223D",
+          color: "#fff",
+          "border-radius": "3px",
+          "padding-left": "4px"
+        },
+        attrs: {
+          target: "_blank",
+          rel: "noreferrer",
+          href: "http://owncloud.seatheworld.fr/"
+        }
+      },
+      [
+        _c("img", {
+          staticStyle: { width: "50px", position: "relative" },
+          attrs: {
+            src: "http://owncloud.seatheworld.fr/core/img/logo-icon.svg"
+          }
+        }),
+        _vm._v("\n                    Ajouter des photos\n            ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "michel" } }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-info sticky float",
+          attrs: { id: "menu-toggle" }
+        },
+        [
+          _c("span", { staticClass: "navbar-toggler-icon" }, [
+            _c("i", {
+              staticClass: "fas fa-angle-double-left",
+              attrs: { id: "btnIcon" }
+            })
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -39500,15 +39580,6 @@ var render = function() {
             "div",
             { staticClass: "btn-group sticky", attrs: { id: "fileButtons" } },
             [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { id: "menu-toggle" }
-                },
-                [_vm._v("dossiers")]
-              ),
-              _vm._v(" "),
               _c(
                 "button",
                 {
@@ -52159,14 +52230,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/components/Directories.vue ***!
   \*************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Directories_vue_vue_type_template_id_1ea62530___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Directories.vue?vue&type=template&id=1ea62530& */ "./resources/js/components/Directories.vue?vue&type=template&id=1ea62530&");
 /* harmony import */ var _Directories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Directories.vue?vue&type=script&lang=js& */ "./resources/js/components/Directories.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Directories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Directories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52196,7 +52268,7 @@ component.options.__file = "resources/js/components/Directories.vue"
 /*!**************************************************************************!*\
   !*** ./resources/js/components/Directories.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52297,14 +52369,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/components/FilesItem.vue ***!
   \***********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FilesItem_vue_vue_type_template_id_74091b4f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FilesItem.vue?vue&type=template&id=74091b4f& */ "./resources/js/components/FilesItem.vue?vue&type=template&id=74091b4f&");
 /* harmony import */ var _FilesItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilesItem.vue?vue&type=script&lang=js& */ "./resources/js/components/FilesItem.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _FilesItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _FilesItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52334,7 +52407,7 @@ component.options.__file = "resources/js/components/FilesItem.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/FilesItem.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

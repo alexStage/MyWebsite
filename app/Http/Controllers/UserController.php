@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illmuinate\Http\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Session;
 
 class UserController extends Controller
 {
@@ -31,8 +33,22 @@ class UserController extends Controller
         }else{
             $family = 0;
         }
-        
-        $user = DB::table('users')
+
+        $data = [
+            'name' => $name,
+            'email' => $email
+        ];
+
+        $validator = Validator::make($data,[
+            'name' => ['required', 'string', 'max:255', 'alpha_num'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+        if ($validator->fails()) {
+            Session::flash('danger', ' utilisateur non modifié !!! pas d\'espace dans les noms ou adresses');
+            return back();
+        }else{
+            $user = DB::table('users')
               ->where('id', $id)
               ->update([
                   'name' => $name,
@@ -40,7 +56,10 @@ class UserController extends Controller
                   'family' => $family,
                   'admin' => $admin,
               ]);
+              Session::flash('success', 'utilisateur modifié');
+              return 'success';
+        }
+
         
-        return 'success';
     }
 }

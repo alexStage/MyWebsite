@@ -45,6 +45,12 @@
     width: 100%;
     text-align: center;
 }
+
+#michel{
+    z-index: 2;
+    float: left;
+
+}
   
 .table-row{
     cursor:pointer;
