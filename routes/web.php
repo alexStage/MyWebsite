@@ -12,9 +12,6 @@ Route::resource('/photos', 'PhotoController')->only(['store','destroy','show']);
 Route::get('/profile', 'ProfileController@photo')->name('profile.photo');
 Route::post('/profile', 'ProfileController@edit')->name('profile.edit');
 
-//downloads
-Route::get('/téléchargements', 'DownloadController@index')->middleware(['auth','Family'])->name('downloads');
-
 Auth::routes();
 
 Route::get('/home', 'AlbumController@index')->name('home');
