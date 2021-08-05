@@ -30,17 +30,6 @@
 
     <div class="container-fluid text-center">
       <div class="row">
-        <div class="col-sm-3">
-          <h1>Commentaires</h1>
-          @foreach($album->comments as $comment)
-          <div class="media border p-3">
-            <div class="media-body">
-                <h4>{{$comment->user->name}}<small><i> posté le: {{$comment->created_at}}</i></small></h4>
-                <p>{{$comment->content}}</p>
-            </div>
-          </div>
-          @endforeach
-        </div>
 	     <div class="col">
         <div class="album py-5 bg-light">
           <div class="container">
@@ -55,6 +44,21 @@
             </div>
           </div>
         </div>
+        @if($album->comments()->count() >= 1)
+        <div class="row">
+          <div class="col">
+            <h1>Commentaires</h1>
+            @foreach($album->comments as $comment)
+            <div class="media border p-3">
+              <div class="media-body">
+                  <h4>{{$comment->user->name}}<small><i> posté le: {{$comment->created_at}}</i></small></h4>
+                  <p>{{$comment->content}}</p>
+              </div>
+            </div>
+            @endforeach
+          </div>
+        </div>
+        @endif
     </div>
     <script src="/js/app.js"></script>
 @stop

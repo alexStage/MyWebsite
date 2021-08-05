@@ -64,7 +64,7 @@ return [
 
         'archives' => [
             'driver' => 'local',
-            'root' => 'C:\Users\dhaen\Pictures\hentai',
+            'root' => '/home/alex/donnees/archives',
             'url' => env('APP_URL').'/archive',
             'visibility' => 'public',
         ],
