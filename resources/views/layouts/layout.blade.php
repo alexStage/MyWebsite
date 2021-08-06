@@ -8,6 +8,8 @@
         <link rel="stylesheet" type="text/css" href="{{url('css/siteTahiti.css')}}">
         <link rel="stylesheet" type="text/css" href="{{url('css/simple-sidebar.css')}}">
         <link rel="icon" href="{{asset('assets/seaTheWorld2.png')}}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+        <script src="{{ asset('js/app.js') }}" ></script>
         <script type="text/javascript" src="{{url('js/jQuery.js')}}"></script>
         <script src="https://kit.fontawesome.com/ef75b9cf35.js" crossorigin="anonymous"></script>
         <title>Carnet de voyages</title>

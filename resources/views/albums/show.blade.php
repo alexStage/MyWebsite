@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 @section('content')
+<!-- importe le css nécessaire au fonctionnement de la gallery photo -->
+<link rel="stylesheet" href="{{ asset('css/baguetteBox.min.css') }}">
 
 <section class="jumbotron text-center">
   <div class="container">
@@ -27,8 +29,7 @@
     </div> 
   @endif
 </section>
-
-    <div class="container-fluid text-center">
+    <!-- <div class="container-fluid text-center">
       <div class="row">
 	     <div class="col">
         <div class="album py-5 bg-light">
@@ -43,7 +44,24 @@
               @endforeach
             </div>
           </div>
+        </div> -->
+
+        <div class="container gallery-container">
+          <div class="tz-gallery">
+              <div class="row">
+                  @foreach($album->photos as $photo)
+                  <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                      <a class="lightbox" href="{{asset($photo->slug)}}">
+                          <img src="{{asset($photo->slug)}}" alt="Bridge">
+                      </a>
+                    </div>
+                  </div>
+                  @endforeach
+              </div>
+          </div>
         </div>
+
         @if($album->comments()->count() >= 1)
         <div class="row">
           <div class="col">
@@ -61,4 +79,6 @@
         @endif
     </div>
     <script src="/js/app.js"></script>
+    <script src="{{ asset('js/baguetteBox.min.js') }}" ></script>
+    <script> baguetteBox.run('.tz-gallery') </script>
 @stop
