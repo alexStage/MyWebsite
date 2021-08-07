@@ -51,7 +51,11 @@
     float: left;
 
 }
-  
+
+.img{
+    position: relative;
+}
+
 .table-row{
     cursor:pointer;
 }
@@ -87,6 +91,7 @@
 }
 
 .tz-gallery .lightbox img {
+    width: 100%;
     border-radius: 0;
     position: relative;
 }
