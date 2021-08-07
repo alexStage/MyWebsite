@@ -53,7 +53,7 @@
                   <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
                       <a class="lightbox" href="{{asset($photo->slug)}}">
-                          <img src="{{asset($photo->slug)}}" class="card-img-top" alt="Bridge">
+                          <img src="{{asset($photo->slug)}}">
                       </a>
                     </div>
                   </div>
