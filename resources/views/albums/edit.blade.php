@@ -3,7 +3,7 @@
 
 <section class="jumbotron text-center">
   <div class="container">
-    {{Form::open(array('route' => array('albums.update', $album), 'method' => 'put'))}}
+    {{Form::open(array('route' => array('albums.update', $album), 'method' => 'put','target'=>'_self'))}}
     <div class="form-group">
     {{Form::label('title', 'Nom de l\'album')}}
     {{Form::text( 
