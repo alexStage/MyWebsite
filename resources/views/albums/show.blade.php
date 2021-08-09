@@ -2,6 +2,7 @@
 @section('content')
 <!-- importe le css nécessaire au fonctionnement de la gallery photo -->
 <link rel="stylesheet" href="{{ asset('css/baguetteBox.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
 
 <section class="jumbotron text-center">
   <div class="container">

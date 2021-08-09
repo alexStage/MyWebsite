@@ -94,11 +94,11 @@
                     {{session('warning')}}
                 </div>
             @endif
-            @if(Session::has('success'))
+<!--             @if(Session::has('success'))
                 <div class="alert alert-success text-center" role="alert">
                     {{session('success')}}
                 </div>
-            @endif
+            @endif -->
             </div>
 
             @yield('content')

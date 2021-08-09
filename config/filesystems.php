@@ -64,7 +64,7 @@ return [
 
         'archives' => [
             'driver' => 'local',
-            'root' => '/home/alex/donnees/archives',
+            'root' => 'C:\Users\dhaen\Pictures\siteTest',
             'url' => env('APP_URL').'/archive',
             'visibility' => 'public',
         ],

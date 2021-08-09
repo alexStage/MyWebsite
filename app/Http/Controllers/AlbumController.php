@@ -126,22 +126,17 @@ class AlbumController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'photos' => 'required',
+            'content' => 'required',
         ]);
 
-        if($request->hasFile('photos')){ 
-            foreach ($request->photos as $photo) {
-                $photoName = $photo->getClientOriginalName();
-                $name = now().$photoName;
-                $filename = $photo->move(public_path('storage/photos/'),$name);
-                    Photo::create([
-                        'name' => $name,
-                        'album_id' =>$id,
-                        ]);
-            }
-        } 
+        $album = DB::table('albums')
+              ->where('id', $request->album)
+              ->update([
+                  'title' => $request->title,
+                  'content' => $request->content,
+              ]);
 
-        Session::flash('success', 'photos ajoutées');
+        Session::flash('success', 'description modifiée');
         return redirect(route('albums.index'));
     }
 
