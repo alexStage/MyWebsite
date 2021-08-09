@@ -2082,6 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['dataUsers'],
   data: function data() {
@@ -2111,6 +2112,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     submitUser: function submitUser() {
       axios.get("/admin/updateUser/".concat(this.id, "/").concat(this.name, "/").concat(this.email, "/").concat(this.family, "/").concat(this.admin))["catch"](function (error) {
+        console.log('Error: ', error);
+      }).then(window.location.href = 'http://seatheworld.fr/admin/users/' + '?refresh');
+    },
+    deleteUser: function deleteUser() {
+      axios.get("/admin/deleteUser/".concat(this.id))["catch"](function (error) {
         console.log('Error: ', error);
       }).then(window.location.href = 'http://seatheworld.fr/admin/users/' + '?refresh');
     }
@@ -39026,7 +39032,23 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(1),
+          _vm._v(" "),
+          _c("td", [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.deleteUser()
+                  }
+                }
+              },
+              [_vm._v("Supprimer")]
+            )
+          ])
         ])
       ])
     ]),

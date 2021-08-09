@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Foundation\Auth\User;
 use Auth;
 
+
 class Admin
 {
     /**

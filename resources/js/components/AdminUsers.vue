@@ -11,6 +11,7 @@
             <td><input type="checkbox" id="admin" name="admin" form="userForm" v-model="admin"></td>
             <td><input type="checkbox" id="family" name="family" form="userForm" v-model="family"></td>
             <td><button type="submit" class="btn btn-primary" form="userForm">Modifier</button></td>
+            <td><button class="btn btn-primary" @click.prevent="deleteUser()">Supprimer</button></td>
             </tr>
         </tbody>
         </table>
@@ -60,6 +61,16 @@ export default {
         },
         submitUser(){
             axios.get(`/admin/updateUser/${this.id}/${this.name}/${this.email}/${this.family}/${this.admin}`)
+            .catch(error => {
+                console.log('Error: ', error)
+            }).then(
+                window.location.href ='http://seatheworld.fr/admin/users/'+'?refresh'
+            )
+
+            
+        },
+        deleteUser(){
+            axios.get(`/admin/deleteUser/${this.id}`)
             .catch(error => {
                 console.log('Error: ', error)
             }).then(

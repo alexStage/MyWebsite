@@ -59,7 +59,11 @@ class UserController extends Controller
               Session::flash('success', 'utilisateur modifié');
               return 'success';
         }
+    }
 
-        
+    public function delete($id){
+        DB::table('users')->where('id', '=', $id)->delete();
+        Session::flash('success', 'utilisateur supprimé');
+        return 'success';
     }
 }

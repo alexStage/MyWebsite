@@ -43,6 +43,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['Admin']], function(){
 	Route::post('/photos/etiquettes', 'AdminController@adminEtiquette')->name('admin.etiquettes');
 	Route::get('/majBdd', 'PhotoController@majTablePhoto')->where('directory', '(.*)')->name('MAJBDD');
 	Route::post('/etiquettes', 'EtiquetteController@create')->name('create.etiquette');
+	Route::get('/deleteUser/{id}', 'UserController@delete')->name('delete.user');
 });
 
 
