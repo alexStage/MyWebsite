@@ -55,7 +55,27 @@
                     </li>
                 @else
 
-                <li class="nav-item dropdown">
+                @if(Auth::user()->isAdmin())
+                <li>
+                    <a class="nav-link" target="_self" href="{{route('admin')}}">
+                        {{ __('Admin') }}
+                    </a>
+                </li>
+                <form id="logout-form" target="_self" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                @endif
+
+                <li>
+                    <a class="nav-link" target="_self" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            <i class="fa fa-sign-out-alt"></i>
+                    </a>
+                </li>
+                
+
+                <!-- <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
@@ -78,7 +98,7 @@
                             @csrf
                         </form>
                     </div>
-                </li>
+                </li> -->
                 @endguest
             </ul>
         </div>               
