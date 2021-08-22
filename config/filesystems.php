@@ -64,7 +64,7 @@ return [
 
         'archives' => [
             'driver' => 'local',
-            'root' => 'C:\Users\dhaen\Pictures\siteTest',
+            'root' => 'C:\Users\dhaen\Pictures\ssh',
             'url' => env('APP_URL').'/archive',
             'visibility' => 'public',
         ],

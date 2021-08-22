@@ -20,9 +20,9 @@
     </div>
     <div id="michel">
         <button class="btn btn-info sticky float" id="menu-toggle"><span class="navbar-toggler-icon">   
-    <i  id="btnIcon" class="fas fa-angle-double-left"></i>
-</span>
-</button>
+            <i  id="btnIcon" class="fas fa-angle-double-left"></i>
+            </span>
+        </button>
     </div>
     
     <files-item v-bind:data-files="laravelData" v-bind:data-path="path" @listFiles="laravelData = $event"></files-item>

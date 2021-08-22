@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Photo;
+use App\Etiquette;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
@@ -150,6 +151,19 @@ class PhotoController extends Controller
         ];
 
         return $array;
+    }
+
+    public function search(){
+        $etiquettes = Etiquette::all();
+        return view('search.photos', compact('etiquettes'));
+    }
+
+    public function searchByTag(Request $request){
+        $etiquettes = $request->etiquettes;
+        $photos = Photo::whereHas('etiquettes', function($q) use($etiquettes) {
+            $q->whereIn('etiquette_id', $etiquettes);
+        })->select('slug')->get(); 
+        return $photos;
     }
     
 

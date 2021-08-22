@@ -33,6 +33,9 @@
                             <li class="nav-item active">
                                 <a class="nav-link" target="_self" href="{{route('archives')}}">Archives</a>
                             </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" target="_self" href="{{route('photos.search')}}">Toutes les photos</a>
+                            </li>
                         @endif
                     @endauth
             </ul>

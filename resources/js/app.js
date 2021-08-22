@@ -25,6 +25,7 @@ Vue.component('directories-item', require('./components/Directories.vue').defaul
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('users-list', require('./components/AdminUsers.vue').default);
 Vue.component('photos-admin', require('./components/AdminPhotos.vue').default);
+Vue.component('photos-search', require('./components/PhotosSearch.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

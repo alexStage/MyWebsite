@@ -44,7 +44,11 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['Admin']], function(){
 	Route::get('/majBdd', 'PhotoController@majTablePhoto')->where('directory', '(.*)')->name('MAJBDD');
 	Route::post('/etiquettes', 'EtiquetteController@create')->name('create.etiquette');
 	Route::get('/deleteUser/{id}', 'UserController@delete')->name('delete.user');
+	Route::get('/photosSearch', 'PhotoController@search')->name('photos.search');
 });
+
+//search
+Route::post('/search/photos', 'PhotoController@searchByTag');
 
 
 //test vue.js

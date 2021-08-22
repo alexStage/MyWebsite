@@ -11,7 +11,7 @@
             <td><input type="checkbox" id="admin" name="admin" form="userForm" v-model="admin"></td>
             <td><input type="checkbox" id="family" name="family" form="userForm" v-model="family"></td>
             <td><button type="submit" class="btn btn-primary" form="userForm">Modifier</button></td>
-            <td><button class="btn btn-primary" @click.prevent="deleteUser()">Supprimer</button></td>
+            <td><button class="btn btn-primary" @click.prevent="deleteUser()"><i class="fa fa-trash-alt"></i></button></td>
             </tr>
         </tbody>
         </table>
