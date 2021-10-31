@@ -1992,8 +1992,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['DataMaj', 'DataPhotos', 'DataEtiquettes'],
+  props: ['DataMaj', 'DataPhotos', 'DataEtiquettes', 'DataCount'],
   data: function data() {
     return {
       maj: this.DataMaj,
@@ -2001,7 +2002,8 @@ __webpack_require__.r(__webpack_exports__);
       allEtiquettes: this.DataEtiquettes,
       selected: null,
       listEtiquettes: [],
-      newEtiquette: ''
+      newEtiquette: '',
+      nbrPhotoAEtiquetter: this.DataCount
     };
   },
   methods: {
@@ -2022,7 +2024,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/admin/photos/etiquettes', {
         photo: this.selected,
         etiquettes: this.listEtiquettes
-      }).then(this.photos.splice(this.photos.indexOf(this.selected), 1), this.selected = null, this.listEtiquettes = []);
+      }).then(this.photos.splice(this.photos.indexOf(this.selected), 1), //this.selected = null,
+      this.selected = this.photos[0], this.listEtiquettes = []);
     },
     createEtiquette: function createEtiquette() {
       var _this = this;
@@ -2468,7 +2471,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -38936,7 +38938,13 @@ var render = function() {
               [_vm._v("Ajouter une etiquette")]
             )
           ]
-        )
+        ),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "nombre de photos à étiquetter: " + _vm._s(_vm.nbrPhotoAEtiquetter)
+          )
+        ])
       ])
     ])
   ])
@@ -39915,91 +39923,108 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col col-lg-2 sticky" }, [
-        _c(
-          "div",
-          { staticClass: "col-sm" },
-          [
-            _c("p", [_vm._v("Catégories:")]),
-            _vm._v(" "),
-            _vm._l(_vm.etiquettes, function(etiquette) {
-              return _c(
-                "a",
-                {
-                  staticClass: "badge badge-pill badge-info",
-                  attrs: { href: "" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.addEtiquette(etiquette)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(etiquette.name))]
-              )
-            })
-          ],
-          2
-        ),
+  return _c("div", { staticClass: "d-flex", attrs: { id: "wrapper" } }, [
+    _c(
+      "div",
+      {
+        staticClass: "bg-light border-right text-center",
+        attrs: { id: "sidebar-wrapper" }
+      },
+      [
+        _c("div", { staticClass: "sidebar-heading" }, [
+          _vm._v("sélectionner catégories")
+        ]),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "col-sm" },
-          [
-            _c("p", [_vm._v("Catégories sélectionnées:")]),
-            _vm._v(" "),
-            _vm._l(_vm.selectedEtiquettes, function(etiquette) {
-              return _c(
-                "a",
-                {
-                  staticClass: "badge badge-pill badge-info",
-                  attrs: { href: "" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.supprEtiquette(etiquette)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(etiquette.name))]
-              )
-            })
-          ],
-          2
+          { staticClass: "sticky" },
+          _vm._l(_vm.etiquettes, function(etiquette) {
+            return _c("div", [
+              _vm.selectedEtiquettes.includes(etiquette)
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "badge badge-pill badge-success",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.supprEtiquette(etiquette)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(etiquette.name))]
+                  )
+                : _c(
+                    "a",
+                    {
+                      staticClass: "badge badge-pill badge-info",
+                      attrs: { href: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addEtiquette(etiquette)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(etiquette.name))]
+                  )
+            ])
+          }),
+          0
         )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c("div", { staticClass: "container gallery-container" }, [
-          _c("div", { staticClass: "tz-gallery" }, [
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.photos, function(photo) {
-                return _c("div", { staticClass: "col-md-4" }, [
-                  _c("div", { staticClass: "card mb-4 box-shadow" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "lightbox",
-                        attrs: { href: "" + photo.slug }
-                      },
-                      [_c("img", { attrs: { src: "" + photo.slug } })]
-                    )
-                  ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "page-content-wrapper" } }, [
+      _c("div", { staticClass: "container-fluid text-center" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.photos, function(photo) {
+            return _c("div", { staticClass: "col-md-4" }, [
+              _c("div", { staticClass: "card mb-4 box-shadow" }, [
+                _c("a", { attrs: { href: "" + photo.slug } }, [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: { src: "" + photo.slug }
+                  })
                 ])
-              }),
-              0
-            )
-          ])
-        ])
+              ])
+            ])
+          }),
+          0
+        )
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "michel" } }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-info sticky float",
+          attrs: { id: "menu-toggle" }
+        },
+        [
+          _c("span", { staticClass: "navbar-toggler-icon" }, [
+            _c("i", {
+              staticClass: "fas fa-angle-double-left",
+              attrs: { id: "btnIcon" }
+            })
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -52744,15 +52769,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./resources/js/components/PhotosSearch.vue ***!
   \**************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PhotosSearch_vue_vue_type_template_id_23853cf4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PhotosSearch.vue?vue&type=template&id=23853cf4& */ "./resources/js/components/PhotosSearch.vue?vue&type=template&id=23853cf4&");
 /* harmony import */ var _PhotosSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PhotosSearch.vue?vue&type=script&lang=js& */ "./resources/js/components/PhotosSearch.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _PhotosSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _PhotosSearch_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52782,7 +52806,7 @@ component.options.__file = "resources/js/components/PhotosSearch.vue"
 /*!***************************************************************************!*\
   !*** ./resources/js/components/PhotosSearch.vue?vue&type=script&lang=js& ***!
   \***************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

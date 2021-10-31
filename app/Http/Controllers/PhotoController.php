@@ -160,9 +160,18 @@ class PhotoController extends Controller
 
     public function searchByTag(Request $request){
         $etiquettes = $request->etiquettes;
-        $photos = Photo::whereHas('etiquettes', function($q) use($etiquettes) {
-            $q->whereIn('etiquette_id', $etiquettes);
-        })->select('slug')->get(); 
+        /* $photos = Photo::whereHas('etiquettes', function($q) use($etiquettes) {
+                $q->whereIn('etiquette_id', $etiquettes);
+        })->select('slug')->get(); */
+
+        $photos = Photo::where(function ($query) use($etiquettes) {
+            foreach($etiquettes as $etiquette){
+            $query->whereHas('etiquettes', function ($subquery) use($etiquette) {
+                $subquery->where('etiquette_id', $etiquette);
+            });
+        }
+        })->select('slug')->get();
+
         return $photos;
     }
     

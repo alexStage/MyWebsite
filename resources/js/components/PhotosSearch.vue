@@ -1,32 +1,31 @@
 <template>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col col-lg-2 sticky">
-                <div class="col-sm">
-                    <p>Catégories:</p>
-                    <a href="" @click.prevent="addEtiquette(etiquette)" v-for="etiquette in etiquettes" class="badge badge-pill badge-info">{{etiquette.name}}</a>
-                </div>
-                <div class="col-sm">
-                    <p>Catégories sélectionnées:</p>
-                    <a href="" @click.prevent="supprEtiquette(etiquette)" v-for="etiquette in selectedEtiquettes" class="badge badge-pill badge-info">{{etiquette.name}}</a>
+<div class="d-flex" id="wrapper"> 
+    <div class="bg-light border-right text-center" id="sidebar-wrapper">        
+            <div class="sidebar-heading">sélectionner catégories</div>
+            <div class="sticky">
+                <div v-for="etiquette in etiquettes">
+                    <a href="" v-if="selectedEtiquettes.includes(etiquette)" @click.prevent="supprEtiquette(etiquette)" class="badge badge-pill badge-success">{{etiquette.name}}</a>
+                    <a href="" v-else @click.prevent="addEtiquette(etiquette)" class="badge badge-pill badge-info">{{etiquette.name}}</a>
                 </div>
             </div>
-            <div class="col">
-                <div class="container gallery-container">
-                    <div class="tz-gallery">
-                        <div class="row">
+    </div>
+    <div id="michel">
+        <button class="btn btn-info sticky float" id="menu-toggle"><span class="navbar-toggler-icon">   
+            <i  id="btnIcon" class="fas fa-angle-double-left"></i>
+            </span>
+        </button>
+    </div>
+            <div id="page-content-wrapper">
+                <div class="container-fluid text-center">
+                    <div class="row">
                             <div v-for="photo in photos" class="col-md-4">
                                 <div class="card mb-4 box-shadow">
-                                <a class="lightbox" :href="`${photo.slug}`">
-                                    <img :src="`${photo.slug}`">
-                                </a>
+                                <a :href="`${photo.slug}`"><img class="card-img-top" :src="`${photo.slug}`"/></a>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 </div>
 </template>
 <script>

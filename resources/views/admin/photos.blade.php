@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <div id="app">
-<photos-admin :data-maj="{{json_encode($maj)}}" :data-photos="{{json_encode($photos)}}" :data-etiquettes="{{json_encode($etiquettes)}}"></photos-admin>
+<photos-admin :data-maj="{{json_encode($maj)}}" :data-count="{{json_encode($count)}}" :data-photos="{{json_encode($photos)}}" :data-etiquettes="{{json_encode($etiquettes)}}"></photos-admin>
 </div>
 
 @if($maj['missing']!=0||$maj['toDelete']!=0)

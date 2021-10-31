@@ -30,6 +30,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Ajouter une etiquette</button>
                     </form>
+                    <p>nombre de photos à étiquetter: {{ nbrPhotoAEtiquetter }}</p>
                 </div>
             </div>
             
@@ -37,7 +38,7 @@
 </template>
 <script>
 export default {
-    props: ['DataMaj', 'DataPhotos', 'DataEtiquettes'],
+    props: ['DataMaj', 'DataPhotos', 'DataEtiquettes', 'DataCount'],
     data(){
         return{
             maj: this.DataMaj,
@@ -46,6 +47,7 @@ export default {
             selected: null,
             listEtiquettes: [],
             newEtiquette: '',
+            nbrPhotoAEtiquetter: this.DataCount,
         }
     },
     methods:{
@@ -68,7 +70,8 @@ export default {
                 etiquettes: this.listEtiquettes,
             }).then(
                 this.photos.splice(this.photos.indexOf(this.selected),1),
-                this.selected = null,
+                //this.selected = null,
+                this.selected = this.photos[0],
                 this.listEtiquettes = []
             )
         },

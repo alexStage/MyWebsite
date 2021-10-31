@@ -8,6 +8,7 @@ use App\Etiquette;
 use Illuminate\Http\Request;
 use Storage;
 use App\Http\Controllers\PhotoController;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -17,9 +18,10 @@ class AdminController extends Controller
 
     public function AdminPhotos(){
         $maj = PhotoController::isUpToDate();
-        $photos = Photo::all();
-        $etiquettes = Etiquette::all();
-        return view('admin.photos', compact('photos', 'etiquettes', 'maj'));
+        $photos = Photo::doesntHave('etiquettes')->get();
+        $count = Photo::doesntHave('etiquettes')->count();
+        $etiquettes = DB::table('etiquettes')->orderBy('name', 'asc')->get();
+        return view('admin.photos', compact('photos', 'etiquettes', 'maj', 'count'));
     }
 
     public function AdminUsers(){
