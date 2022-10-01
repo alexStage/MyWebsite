@@ -25,6 +25,7 @@
     top:40px;
     z-index: 1;
 }
+
 .band{
     overflow: scroll;
     width: 100%;
@@ -144,4 +145,20 @@
     body {
         padding: 0;
     }
+}
+
+.map__image{
+    fill: #5ce1e6;
+    stroke:#fff;
+    stroke-width: 1px;
+    transition: fill 0.3s;
+}
+
+.visited{
+    fill: rgb(17, 224, 59);
+}
+
+.map__image path:hover{
+    fill: #4011b5;
+    transition: fill 0.3s;
 }

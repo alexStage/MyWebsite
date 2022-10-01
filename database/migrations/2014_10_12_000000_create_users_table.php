@@ -16,20 +16,19 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('familyName');
+            $table->string('pseudo')->unique();
             $table->string('email')->unique();
+            $table->longtext('description')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('photoSlug')->default('assets/default-user-icon.jpg');
             $table->boolean('admin')->default(false);
-            $table->boolean('family')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
 
         Schema::table('albums', function(Blueprint  $table){
-            $table->integer('user_id')->unsigned()->index();
-        });
-
-        Schema::table('messages',function(Blueprint $table){
             $table->integer('user_id')->unsigned()->index();
         });
 
@@ -41,6 +40,9 @@ class CreateUsersTable extends Migration
             $table->integer('user_id')->unsigned()->index()->nullable();
         });
 
+        Schema::table('user_voyage', function(Blueprint  $table){
+            $table->integer('user_id')->unsigned()->index()->nullable();
+        });
 
     }
 

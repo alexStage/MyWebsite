@@ -12,10 +12,6 @@ use Illuminate\Support\Collection;
 
 class ArchiveController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('Family');
-    }
 
     public function index($directory = null){
         $directories = Storage::disk('archives')->allDirectories();

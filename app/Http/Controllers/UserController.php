@@ -66,4 +66,9 @@ class UserController extends Controller
         Session::flash('success', 'utilisateur supprimé');
         return 'success';
     }
+
+    public function show($id){
+        $user = User::with('albums', 'voyages')->where('id', '=', $id)->first();
+        return view('users.show', compact('user'));
+    }
 }

@@ -68,12 +68,13 @@ export default {
             axios.post('/admin/photos/etiquettes',{
                 photo: this.selected,
                 etiquettes: this.listEtiquettes,
-            }).then(
+            }).then((result)=>{
                 this.photos.splice(this.photos.indexOf(this.selected),1),
                 //this.selected = null,
                 this.selected = this.photos[0],
                 this.listEtiquettes = []
-            )
+                this.nbrPhotoAEtiquetter = result.data
+            })
         },
         createEtiquette(){
             axios.post('/admin/etiquettes',{

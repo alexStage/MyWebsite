@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','is_admin','id'
+        'name', 'email', 'password','is_admin','id', 'familyName', 'pseudo', 'description'
     ];
 
     /**
@@ -31,11 +31,7 @@ class User extends Authenticatable
     ];
 
     public function isAdmin(){
-        return $this->admin; // retourne vrai ou faux selon le boolean admin dans la base
-    }
-
-    public function isFamily(){
-        return $this->family; // retourne vrai ou faux selon le boolean family dans la base
+        return $this->admin; // retourne vrai ou faux selon le boolean admin dans la bdd
     }
 
     /**
@@ -51,12 +47,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Album'); 
     }
 
-    public function messages(){
-        return $this->hasMany('App\Message');
-    }
-
-    public function photo(){
+/*     public function photo(){
         return $this->hasOne('App\Photo');
+    } */
+
+    public function voyages(){
+        return $this->belongsToMany('App\Voyage');
     }
 
 

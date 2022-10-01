@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 @section('content')
-
 </br>   
 <div class="container">
 <ul class="list-group">

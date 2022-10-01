@@ -64,7 +64,7 @@ return [
 
         'archives' => [
             'driver' => 'local',
-            'root' => 'C:\Users\dhaen\Pictures\ssh',
+            'root' => '/home/alex/donnees/archives',
             'url' => env('APP_URL').'/archive',
             'visibility' => 'public',
         ],
@@ -94,6 +94,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('archive') => '/home/alex/donnees/archives'
     ],
 
     'sftp' => [

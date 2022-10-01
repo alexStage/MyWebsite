@@ -21,8 +21,9 @@
 			</div>
 			<div class="form-group">
 				<div class="custom-file">
-				<label class="custom-file-label" for="validatedCustomFile">Sélectionner les photos</label>
-				<input type="file" class="custom-file-input" name="photos[]" multiple="multiple" />
+					<label class="custom-file-label" for="validatedCustomFile">Sélectionner les photos</label>
+					<input type="file" class="custom-file-input" name="photos[]" multiple="multiple" />
+				</div>
 			</div>
 	</div>
 

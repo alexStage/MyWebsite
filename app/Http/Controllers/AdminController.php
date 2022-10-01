@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     public function index(){
+        dd('zgeg');
         return view('admin.index');
     }
 
     public function AdminPhotos(){
         $maj = PhotoController::isUpToDate();
-        $photos = Photo::doesntHave('etiquettes')->get();
+        $photos = Photo::doesntHave('etiquettes')->inRandomOrder()->get();
         $count = Photo::doesntHave('etiquettes')->count();
         $etiquettes = DB::table('etiquettes')->orderBy('name', 'asc')->get();
         return view('admin.photos', compact('photos', 'etiquettes', 'maj', 'count'));
@@ -36,5 +37,7 @@ class AdminController extends Controller
             $eti = Etiquette::where('id', '=', $etiquette['id'])->first();
             $photo->etiquettes()->save($eti);
         }
+        $count = Photo::doesntHave('etiquettes')->count();
+        return $count;
     }
 }

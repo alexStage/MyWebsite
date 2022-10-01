@@ -9,9 +9,8 @@
         <link rel="stylesheet" type="text/css" href="{{url('css/simple-sidebar.css')}}">
         <link rel="icon" href="{{asset('assets/seaTheWorld2.png')}}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
-        <script src="{{ asset('js/app.js') }}" ></script>
         <script type="text/javascript" src="{{url('js/jQuery.js')}}"></script>
-        <script src="https://kit.fontawesome.com/ef75b9cf35.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://kit.fontawesome.com/ef75b9cf35.js" crossorigin="anonymous"></script> -->
         <title>Carnet de voyages</title>
     </head>
     <body>
@@ -22,22 +21,15 @@
         </button> 
         <div class="collapse navbar-collapse navbar-header" id="navbarTogglerDemo01">
             <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" target="_self" href="{{route('albums.index')}}">Albums</a>
-                    </li>
-                    @auth
-                        <li class="nav-item active">
-                            <a class="nav-link" target="_self" href="{{route('messages.index')}}">Messages</a>
-                        </li>
-                        @if(Auth::user()->isFamily())
-                            <li class="nav-item active">
-                                <a class="nav-link" target="_self" href="{{route('archives')}}">Archives</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" target="_self" href="{{route('photos.search')}}">Toutes les photos</a>
-                            </li>
-                        @endif
-                    @endauth
+                <li class="nav-item active">
+                    <a class="nav-link" target="_self" href="{{route('accueil')}}">accueil</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" target="_self" href="{{route('voyages.index')}}">voyages</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" target="_self" href="{{ route('voyages.create') }}">Créer un voyage</a>
+                </li>
             </ul>
 
 
@@ -56,41 +48,24 @@
                     <li>
                         <a class="nav-link" target="_self" href="{{ route('login') }}"><span class="glyphicon glyphicon-user"></span>{{ __('Se connecter') }}</a>
                     </li>
-                @else
+                @else 
 
-                @if(Auth::user()->isAdmin())
-                <li>
-                    <a class="nav-link" target="_self" href="{{route('admin')}}">
-                        {{ __('Admin') }}
-                    </a>
-                </li>
                 <form id="logout-form" target="_self" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-                @endif
-
-                <li>
-                    <a class="nav-link" target="_self" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            <i class="fa fa-sign-out-alt"></i>
-                    </a>
-                </li>
-                
-
-                <!-- <li class="nav-item dropdown">
+            
+                <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" target="_self" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                             {{ __('Se déconnecter') }}
                         </a>
-                        <a class="dropdown-item" href="{{route('profile.photo')}}">
-                            {{ __('ajouter photo de profile') }}
+                        <a class="dropdown-item" href="{{route('users.show', Auth::user()->id)}}">
+                            {{ __('modifier votre profile') }}
                         </a>
                         @if(Auth::user()->isAdmin())
                         <a class="dropdown-item" target="_self" href="{{route('admin')}}">
@@ -101,27 +76,30 @@
                             @csrf
                         </form>
                     </div>
-                </li> -->
+                </li>
                 @endguest
             </ul>
         </div>               
     </nav>
             <div class="container">
-            @if(Session::has('danger'))
-                <div class="alert alert-danger text-center" role="alert">
-                    {{session('danger')}}
-                </div>
-            @endif
-            @if(Session::has('warning'))
-                <div class="alert alert-warning text-center" role="alert">
-                    {{session('warning')}}
-                </div>
-            @endif
-<!--             @if(Session::has('success'))
-                <div class="alert alert-success text-center" role="alert">
-                    {{session('success')}}
-                </div>
-            @endif -->
+                @if(Session::has('danger'))
+                <br>
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{session('danger')}}
+                    </div>
+                @endif
+                @if(Session::has('warning'))
+                <br>
+                    <div class="alert alert-warning text-center" role="alert">
+                        {{session('warning')}}
+                    </div>
+                @endif
+                @if(Session::has('success'))
+                <br>
+                    <div class="alert alert-success text-center" role="alert">
+                        {{session('success')}}
+                    </div>
+                @endif 
             </div>
 
             @yield('content')

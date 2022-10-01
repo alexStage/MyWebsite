@@ -21,14 +21,6 @@
         
         {{Form::close()}}
     </div>
-
-  @if(session('success'))
-    <div class="container">
-      <div class="alert alert-success">
-        <strong>{{session('success')}}</strong> 
-      </div>
-    </div> 
-  @endif
 </section>
     <!-- <div class="container-fluid text-center">
       <div class="row">

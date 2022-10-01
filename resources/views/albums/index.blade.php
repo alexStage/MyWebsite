@@ -2,16 +2,16 @@
 @section('content')
 <main role="main">
 
-    @if(session('success'))
+<!--     @if(session('success'))
       <section class="jumbotron text-center">
-        <!-- <div class="container">
+         <div class="container">
           <h1 class="jumbotron-heading">Albums :</h1>
           <p class="lead text-muted">Albums souvenirs de voyage ;)</p>
           <p>
             <a href="{{route('home')}}" class="btn btn-primary my-2" target="_self">Créer un album</a>
-            <!--<a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
           </p>
-        </div> -->
+        </div> 
         
           <div class="container">
             <div class="alert alert-success">
@@ -20,7 +20,7 @@
           </div>
         
       </section>
-    @endif
+    @endif -->
       <div class="album py-5 bg-light">
         <div class="container">
 
@@ -57,7 +57,5 @@
 
       </div>
 </main>
-
-@include('layouts/footer')
 
 @stop

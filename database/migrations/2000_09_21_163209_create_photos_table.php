@@ -27,10 +27,6 @@ class CreatePhotosTable extends Migration
         Schema::table('etiquette_photo', function(Blueprint $table){
             $table->integer('photo_id')->unsigned()->index()->nullable();
         });
-
-        Schema::table('album_photo', function(Blueprint $table){
-            $table->integer('photo_id')->unsigned()->index()->nullable();
-        });
     }
 
     /**

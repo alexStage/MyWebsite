@@ -31,4 +31,8 @@ class ProfileController extends Controller
         return view('profiles.photo');
     }
 
+    public function show($id){
+        
+    }
+
 }

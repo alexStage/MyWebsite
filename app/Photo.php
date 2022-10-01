@@ -8,7 +8,7 @@ use App\Comment;
 
 class Photo extends Model
 {
-    protected $fillable = ['slug','name','album_id', 'user_id'];
+    protected $fillable = ['slug','name','album_id', 'user_id', 'pays_id'];
 
     protected $with = ['etiquettes'];
 

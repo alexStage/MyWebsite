@@ -16,7 +16,8 @@ class CreateAlbumsTable extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('title');
-            $table->longtext('content');
+            $table->longtext('description')->nullable();
+            $table->text('ville')->nullable();
             $table->timestamps();
         });
 
@@ -28,7 +29,7 @@ class CreateAlbumsTable extends Migration
             $table->integer('album_id')->unsigned()->index()->nullable();
         });
 
-        Schema::table('album_photo', function(Blueprint $table){
+        Schema::table('photos', function(Blueprint $table){
             $table->integer('album_id')->unsigned()->index()->nullable();
         });
     }

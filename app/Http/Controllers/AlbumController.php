@@ -13,46 +13,36 @@ use Session;
 use Redirect;
 use Validator;
 use App\Jobs\UploadAlbum;
+use Storage;
 
 class AlbumController extends Controller
 {   
 
-
-    //upload photos
+    //upload les photos de l'album nouvellement créé par la fonction store
     public function upload($request, $album){
-        if($request->hasFile('photos')){ 
+        $albumId = $album->id;
+        $userId = $request->user()->id;
+        $slug = $userId.'/'.$albumId;
+        if($request->hasFile('photos')){
             foreach ($request->photos as $photo) {
                 $photoName = $photo->getClientOriginalName();
-                $name = now().$photoName;
-                $filename = $photo->move(public_path('storage/photos/'),$name);
-                    Photo::create([
-                        'name' => $name,
-                        'album_id' =>$album->id,
-                        ]);
+                $slugComplet = 'archive/'.$slug.'/'.$photoName;
+                $name = $album->id;
+                Storage::disk('archives')->putFileAs($slug, $photo, $photoName);
+                $photoModel = Photo::create([
+                    'name' => $photoName,
+                    'slug' => $slugComplet,
+                    'user_id' => $userId,
+                ]);
+
+                //réduit le poids de la photo
+                $img=\Image::make($photo);
+                $img->save(\public_path($slugComplet), 50);
+                
+                //lie la photo à l'album dans la table album_photo
+                $album->photos()->save($photoModel);
             }
         }   
-    }
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $albums = Album::with('user','photos','comments')->simplePaginate(8);
-  	    return view('albums.index', compact('albums'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('albums.create');
     }
 
     /**
@@ -78,21 +68,39 @@ class AlbumController extends Controller
         ]);
 
         $this->upload($request, $album);
-
-        //if($request->hasFile('photos')){
-        //    foreach($request->photos as $photo){
-        //        $photos = $request->photos; 
-        //       $this->dispatch(new UploadAlbum($photos));
-        //    }
-        //}
            
         Session::flash('success', 'Album créé avec succès'); 
         return redirect(route('albums.index'));
       
-}
+    }
+
 
     /**
-     * Display the specified resource.
+     * affiche la liste des albums
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function index()
+    {
+        $albums = Album::with('user','photos','comments')->simplePaginate(8);
+  	    return view('albums.index', compact('albums'));
+    }
+
+    /**
+     * renvoie au formulaire de création d'album
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function create()
+    {
+        return view('albums.create');
+    }
+
+    
+    /**
+     * affiche l'album sélectionné
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -105,7 +113,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * affiche le formulaire de modification d'album
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -126,6 +134,7 @@ class AlbumController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
+            'title' => 'required',
             'content' => 'required',
         ]);
 
@@ -141,13 +150,13 @@ class AlbumController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * supprimer un album
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Album $album)
-    {
+    {   
         $album->delete();
         $photos_album = DB::table('album_photo')->where('album_id', $album->id);
         $photos_album->delete();
@@ -155,6 +164,7 @@ class AlbumController extends Controller
         return redirect('/');
     }
 
+    //crée un commentaire sur un album
     public function comment(Album $album, Request $request){
         $validatedData = $request->validate([
             'content' => 'required',
@@ -184,29 +194,6 @@ class AlbumController extends Controller
 
     }
 
-    public function createAlbum(Request $request){
-        request()->validate([
-            'content' => ['required'],
-            'title' => ['required'],
-            'img' => ['required']
-        ]);
 
-        $album = Album::create([
-            'title'=> $request->title,
-            'content'=>$request->content,
-            'user_id'=> Auth::user()->id,
-        ]);
-
-        foreach($request->img as $file){
-            $array = explode("/", $file);
-            $name = $array[count($array) - 1];
-            
-            $photo = Photo::where('name', '=', $name)->first();
-            $album->photos()->save($photo);
-        }
-        
-        Session::flash('success', 'Votre album a bien été créé');
-        return redirect('/');
-
-    }
+    
 }

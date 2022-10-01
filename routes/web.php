@@ -1,16 +1,26 @@
 <?php
 //root
-Route::get('/', 'AlbumController@index')->name('albums.index');
+Route::get('/', 'AlbumController@index')->name('accueil');
 
 //resources
-Route::resource('/messages','MessageController');
-Route::resource('/albums', 'AlbumController', ['except'=>'create']);
-Route::resource('/photos', 'PhotoController')->only(['store','destroy','show']);
-
+Route::resource('/albums', 'AlbumController');
+Route::resource('/photos', 'PhotoController')->only(['destroy','show']);
+Route::resource('/voyages', 'VoyageController');
+Route::resource('/users', 'UserController');
 
 //profile
 Route::get('/profile', 'ProfileController@photo')->name('profile.photo');
-Route::post('/profile', 'ProfileController@edit')->name('profile.edit');
+
+
+//voyages
+/* Route::get('/voyages', 'VoyageController@index')->name('voyage.index');
+Route::get('/voyage/show', 'VoyageController@show')->name('voyage.show');
+Route::get('/voyage/edit', 'VoyageController@edit')->name('voyage.edit');
+Route::delete('/voyage/{voyage}', 'VoyageController@destroy')->name('voyage.destroy'); */
+
+
+//photos
+Route::post('/photos/store', 'PhotoController@store')->name('photos.store');
 
 Auth::routes();
 
@@ -18,44 +28,48 @@ Route::get('/home', 'AlbumController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
 	//create albums
-	#Route::get('/albums','AlbumController@create')->name('albums.create');
-	Route::post('/albums/publish', 'AlbumController@createAlbum');
+	Route::post('/albums/store', 'AlbumController@store')->name('albums.store');
+	Route::get('/albums/create', 'AlbumController@create')->name('albums.create');
 	//comments
 	Route::post('/albums/{album}', 'AlbumController@comment')->name('albums.comment');
 	Route::post('/photos/{photo}', 'PhotoController@comment')->name('photos.comment');
 	Route::post('/comments', 'AlbumController@jscomment');
-	
+	//voyages
+	Route::get('/voyages/create', 'VoyageController@create')->name('voyages.create');
+	Route::post('/voyages/store', 'VoyageController@store')->name('voyages.store');
 });
 
-Route::group(['prefix'=> 'archives', 'middleware'=> ['Family', 'auth']],function(){
-	Route::get('/{directory?}', 'ArchiveController@index')->name('archives')->where('directory', '(.*)');
-	Route::get('/listDirectories/{directory?}', 'ArchiveController@listDirectories')->where('directory', '(.*)');
-});
+//archives
+//Route::get('/{directory?}', 'ArchiveController@index')->name('archives')->where('directory', '(.*)');
+Route::get('/listDirectories/{directory?}', 'ArchiveController@listDirectories')->where('directory', '(.*)');
+
+Route::get('/admin/', 'AdminController@index')->name('admin');
+Route::get('/admin/users', 'AdminController@adminUsers')->name('admin.users');
+Route::get('/admin/photos', 'AdminController@adminPhotos')->name('admin.photos');
 
 
 
-Route::group(['prefix'=> 'admin', 'middleware'=>['Admin']], function(){
+/* Route::group(['prefix'=> 'admin', 'middleware'=>['Admin']], function(){
 	Route::get('/', 'AdminController@index')->name('admin');
 	Route::get('/users', 'AdminController@adminUsers')->name('admin.users');
 	Route::get('/getUser/{id}', 'UserController@getUser');
 	Route::get('/updateUser/{id}/{name}/{email}/{family}/{admin}', 'UserController@update');
 	Route::get('/photos', 'AdminController@adminPhotos')->name('admin.photos');
 	Route::post('/photos/etiquettes', 'AdminController@adminEtiquette')->name('admin.etiquettes');
-	Route::get('/majBdd', 'PhotoController@majTablePhoto')->where('directory', '(.*)')->name('MAJBDD');
 	Route::post('/etiquettes', 'EtiquetteController@create')->name('create.etiquette');
 	Route::get('/deleteUser/{id}', 'UserController@delete')->name('delete.user');
 	Route::get('/photosSearch', 'PhotoController@search')->name('photos.search');
-});
+}); */
 
 //search
 Route::post('/search/photos', 'PhotoController@searchByTag');
 
 
-//test vue.js
-Route::get('/vues', function(){
-	return view('vues.show');
-});
 
 Route::get('/directories/{directory?}', 'ArchiveController@getDirectories')->where('directory', '(.*)');
 Route::get('/paginations', 'ArchiveController@getPagination');
+
+
+//suppr
+Route::post('/suppr/photos', 'PhotoController@supprPhoto');
 
