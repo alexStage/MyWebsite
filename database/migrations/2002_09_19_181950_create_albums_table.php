@@ -32,6 +32,10 @@ class CreateAlbumsTable extends Migration
         Schema::table('photos', function(Blueprint $table){
             $table->integer('album_id')->unsigned()->index()->nullable();
         });
+
+        Schema::table('album_photo', function(Blueprint $table){
+            $table->integer('album_id')->unsigned()->index()->nullable();
+        });
     }
 
     /**

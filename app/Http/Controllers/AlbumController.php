@@ -142,7 +142,7 @@ class AlbumController extends Controller
               ->where('id', $request->album)
               ->update([
                   'title' => $request->title,
-                  'content' => $request->content,
+                  'description' => $request->content,
               ]);
 
         Session::flash('success', 'description modifiée');

@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <!-- importe le css nécessaire au fonctionnement de la gallery photo -->
 <link rel="stylesheet" href="<?php echo e(asset('css/baguetteBox.min.css')); ?>">

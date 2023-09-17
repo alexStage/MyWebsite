@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 
 <section class="jumbotron text-center">
